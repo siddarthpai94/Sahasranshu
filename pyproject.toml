@@ -1,65 +1,21 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "sahasranshu"
 version = "0.1.0"
-description = "Intelligent policy analysis system for regulatory stance extraction and tracking"
-readme = "README.md"
 requires-python = ">=3.11"
-license = { text = "MIT" }
-authors = [
-    { name = "Sahasranshu Contributors" }
-]
-
 dependencies = [
-    "pydantic>=2.0",
-    "pydantic-settings>=2.0",
-    "google-generativeai>=0.3.0",
-    "pypdf>=4.0",
-    "python-dotenv>=1.0",
-    "typer>=0.9",
-    "rich>=13.0",
+  "typer>=0.12",
+  "pydantic>=2.6"
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "black>=23.0",
-    "ruff>=0.1.0",
-    "mypy>=1.0",
-    "isort>=5.0",
-]
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [project.scripts]
 sahasranshu = "sahasranshu.cli:app"
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-addopts = "-v --strict-markers"
-markers = [
-    "unit: unit tests",
-    "integration: integration tests",
-    "slow: slow tests",
-]
-
-[tool.black]
-line-length = 100
-target-version = ["py311"]
-
-[tool.ruff]
-line-length = 100
-target-version = "py311"
-select = ["E", "F", "W", "I", "N"]
-
-[tool.mypy]
-python_version = "3.11"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = false
-
-[tool.isort]
-profile = "black"
-line_length = 100
