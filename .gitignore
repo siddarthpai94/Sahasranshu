@@ -131,3 +131,4 @@ results/
 outputs/
 *.cache
 .cache/
+.precommit-venv/
