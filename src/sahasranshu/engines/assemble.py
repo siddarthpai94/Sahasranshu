@@ -1,6 +1,6 @@
 """Pipeline assembly engine."""
 
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 async def run_pipeline(
@@ -21,11 +21,8 @@ async def run_pipeline(
     return {"stances": stances, "deltas": deltas, "hypotheses": hypotheses}
 
 
-from sahasranshu.llm.prompts import (
-    STANCE_EXTRACTION_PROMPT,
-    DELTA_DETECTION_PROMPT,
-    HYPOTHESIS_PROMPT,
-)
+from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
+                                     STANCE_EXTRACTION_PROMPT)
 
 
 async def extract_stances(text: str, llm_client) -> list:

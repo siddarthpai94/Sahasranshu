@@ -1,7 +1,7 @@
 """Gemini API client."""
 
-from typing import Any
 from pathlib import Path
+from typing import Any
 
 
 class GeminiClient:
@@ -45,7 +45,9 @@ class GeminiClient:
         from sahasranshu.config.settings import Settings
 
         settings = Settings()
-        self.audit_enabled = settings.llm_audit_enabled if audit_enabled is None else bool(audit_enabled)
+        self.audit_enabled = (
+            settings.llm_audit_enabled if audit_enabled is None else bool(audit_enabled)
+        )
         self.audit_path = Path(audit_path) if audit_path else settings.llm_audit_path
 
         if self.record_responses and self.record_path:
@@ -59,7 +61,9 @@ class GeminiClient:
         try:
             import google.generativeai as genai
         except Exception as e:
-            raise RuntimeError("google.generativeai library is required to call the live Gemini API") from e
+            raise RuntimeError(
+                "google.generativeai library is required to call the live Gemini API"
+            ) from e
 
         genai.configure(api_key=self.api_key if hasattr(self, "api_key") else None)
         model = genai.GenerativeModel(self.model)
@@ -81,11 +85,12 @@ class GeminiClient:
 
     def extract_json(self, prompt: str) -> Any:
         """Generate JSON response from Gemini with retries and audit logging."""
-        from .json_guard import parse_json_response
-        import time
         import json
         import logging
+        import time
         from datetime import datetime
+
+        from .json_guard import parse_json_response
 
         logger = logging.getLogger(__name__)
 
@@ -102,14 +107,21 @@ class GeminiClient:
                 # Recording
                 if self.record_responses and self.record_path:
                     ts = int(time.time() * 1000)
-                    slug = "".join(ch if ch.isalnum() else "_" for ch in prompt[:40]).strip("_")
+                    slug = "".join(
+                        ch if ch.isalnum() else "_" for ch in prompt[:40]
+                    ).strip("_")
                     raw_file = self.record_path / f"{ts}_{slug}_raw.txt"
                     parsed_file = self.record_path / f"{ts}_{slug}_parsed.json"
                     try:
                         raw_file.write_text(response, encoding="utf-8")
-                        parsed_file.write_text(json.dumps(parsed, ensure_ascii=False, indent=2), encoding="utf-8")
+                        parsed_file.write_text(
+                            json.dumps(parsed, ensure_ascii=False, indent=2),
+                            encoding="utf-8",
+                        )
                     except Exception:
-                        logger.exception("Failed to write recorded LLM response; continuing")
+                        logger.exception(
+                            "Failed to write recorded LLM response; continuing"
+                        )
 
                 # Audit entry
                 if self.audit_enabled and self.audit_path:
@@ -127,7 +139,9 @@ class GeminiClient:
 
                 return parsed
 
-            except Exception as exc:  # noqa: BLE001 - intentionally broad to capture timeouts and parse errors
+            except (
+                Exception
+            ) as exc:  # noqa: BLE001 - intentionally broad to capture timeouts and parse errors
                 elapsed_ms = int((time.time() - t0) * 1000)
                 last_exc = exc
 

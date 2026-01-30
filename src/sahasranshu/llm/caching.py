@@ -3,7 +3,7 @@
 import hashlib
 import json
 from pathlib import Path
-from typing import Optional, Any
+from typing import Any, Optional
 
 
 class LLMCache:

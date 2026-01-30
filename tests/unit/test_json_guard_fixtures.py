@@ -25,5 +25,5 @@ def test_parse_various_raw_responses():
     assert result3 == fixtures["hypotheses_array_inline"]["expected"]
 
     # wrapped codeblock
-    result4 = parse_json_response(fixtures["wrapped_with_text_and_codeblock"]["raw"]) 
+    result4 = parse_json_response(fixtures["wrapped_with_text_and_codeblock"]["raw"])
     assert result4 == fixtures["wrapped_with_text_and_codeblock"]["expected"]

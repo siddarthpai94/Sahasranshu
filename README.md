@@ -57,6 +57,7 @@ New helpers:
 
 - `scripts/convert_llm_records.py` - convert recorded `*_parsed.json` files into reviewed candidate golden fixtures. See `python scripts/convert_llm_records.py --help` for options.
 - `scripts/generate_blog_docx.py` - convert `docs/Blogpost.md` into `docs/Blogpost.docx` (requires `python-docx`). Example: `python scripts/generate_blog_docx.py`.
+- Pre-commit: run `pre-commit install` once locally (or `make pre-commit-install`) and then `pre-commit run --all-files` to check/fix issues. Hooks include `black`, `ruff`, `isort`, and basic YAML/whitespace checks.
 - Gemini calls include a per-request `timeout` and `retries` with exponential backoff and produce an audit log by default at `.cache/llm_audit.jsonl`.
 
 

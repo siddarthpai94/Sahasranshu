@@ -4,7 +4,8 @@ version = "0.1.0"
 requires-python = ">=3.11"
 dependencies = [
   "typer>=0.12",
-  "pydantic>=2.6"
+  "pydantic>=2.6",
+  "pydantic-settings>=2.0"
 ]
 
 [build-system]
@@ -29,8 +30,9 @@ dev = [
   "isort",
   "mypy",
   "codecov",
-  # Pin the SDK to a compatible major range to avoid breaking changes
-  "google-generativeai>=1.0.0,<2.0.0"
+  "pre-commit",
+  # Pin the SDK to a compatible minor range to avoid breaking changes
+  "google-generativeai>=0.8.0,<1.0.0"
 ]
 
 [tool.pytest.ini_options]

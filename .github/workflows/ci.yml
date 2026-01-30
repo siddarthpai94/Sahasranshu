@@ -51,6 +51,11 @@ jobs:
           echo "\n### google-generativeai info"
           python -m pip show google-generativeai || pip show google-generativeai || true
 
+      - name: Run pre-commit hooks
+        run: |
+          # fail CI if any pre-commit hooks would modify files or detect issues
+          pre-commit run --all-files --show-diff-on-failure
+
       - name: Lint
         run: make lint
 

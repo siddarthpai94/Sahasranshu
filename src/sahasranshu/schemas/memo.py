@@ -1,8 +1,9 @@
 """Analysis memo schema."""
 
-from pydantic import BaseModel
-from typing import List
 from datetime import datetime
+from typing import List
+
+from pydantic import BaseModel
 
 
 class Memo(BaseModel):

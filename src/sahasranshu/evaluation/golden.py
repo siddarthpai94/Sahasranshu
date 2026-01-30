@@ -1,6 +1,6 @@
 """Golden output regression testing."""
 
-from typing import Dict, Any
+from typing import Any, Dict
 
 
 def load_golden_output(path: str) -> Dict[str, Any]:

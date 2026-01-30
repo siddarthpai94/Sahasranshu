@@ -1,4 +1,5 @@
 import os
+
 import pytest
 
 from sahasranshu.config.settings import Settings
@@ -19,11 +20,15 @@ def test_llm_can_return_parseable_json():
 
     settings = Settings()
     # Use a modest timeout and limited retries to avoid long CI hangs
-    client = GeminiClient(api_key=api_key, model=settings.gemini_model, timeout=15, retries=1)
+    client = GeminiClient(
+        api_key=api_key, model=settings.gemini_model, timeout=15, retries=1
+    )
 
     # Ask the model to output only JSON (object or array). The json_guard will parse it.
     prompt = 'Please output only valid JSON (an object or array). Example: {"probe": "llm_integration_test"}'
 
     parsed = client.extract_json(prompt)
 
-    assert isinstance(parsed, (dict, list)), "Expected parsed JSON (dict or list) from Gemini"
+    assert isinstance(
+        parsed, (dict, list)
+    ), "Expected parsed JSON (dict or list) from Gemini"

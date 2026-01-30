@@ -1,6 +1,6 @@
 """Test runners for evaluation."""
 
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 
 def run_evaluation_suite(test_cases: List[Dict[str, Any]]) -> Dict[str, Any]:

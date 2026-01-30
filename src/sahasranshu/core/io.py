@@ -2,7 +2,7 @@
 
 import json
 from pathlib import Path
-from typing import Any, List, Dict
+from typing import Any, Dict, List
 
 
 def write_jsonl(data: List[Dict[str, Any]], path: Path) -> None:

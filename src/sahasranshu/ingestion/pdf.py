@@ -1,5 +1,7 @@
 from pathlib import Path
+
 from pypdf import PdfReader
+
 
 def pdf_to_pages(pdf_path: str | Path) -> list[dict]:
     reader = PdfReader(str(pdf_path))

@@ -31,6 +31,9 @@ format:
 	black src/ tests/
 	isort src/ tests/
 
+pre-commit-install:
+	@pre-commit install
+
 clean:
 	rm -rf build/
 	rm -rf dist/

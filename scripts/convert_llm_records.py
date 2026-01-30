@@ -6,6 +6,7 @@ Usage:
 This script copies all *_parsed.json files into a tiled structure and writes a manifest
 that you should review before committing the generated fixtures to the repository.
 """
+
 import argparse
 import json
 from pathlib import Path
@@ -26,11 +27,15 @@ def main():
         if f.name.endswith("_parsed.json"):
             payload = json.loads(f.read_text(encoding="utf-8"))
             dest = out / f.name
-            dest.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+            dest.write_text(
+                json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
             manifest.append(str(dest))
 
     manifest_file = out / "MANIFEST.json"
-    manifest_file.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    manifest_file.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
     print("Wrote", len(manifest), "candidate fixtures to", out)
     print("Please review the files and decide which to commit as golden fixtures.")

@@ -1,7 +1,6 @@
 """Tests for ingestion module."""
 
-import pytest
-from sahasranshu.ingestion.cleaning import normalize_whitespace, clean_text
+from sahasranshu.ingestion.cleaning import clean_text, normalize_whitespace
 
 
 def test_normalize_whitespace():

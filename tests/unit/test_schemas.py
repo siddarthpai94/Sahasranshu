@@ -1,6 +1,5 @@
 """Tests for schema validation."""
 
-import pytest
 from sahasranshu.schemas.stance import Stance, StanceCategory
 
 

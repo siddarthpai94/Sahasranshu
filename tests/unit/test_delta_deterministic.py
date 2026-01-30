@@ -1,6 +1,5 @@
 """Tests for deterministic delta detection."""
 
-import pytest
 from sahasranshu.engines.delta import detect_deltas
 
 

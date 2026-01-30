@@ -1,7 +1,5 @@
 """Prompt templates and contracts."""
 
-from typing import Dict, Any
-
 
 class PromptTemplate:
     """Base prompt template."""

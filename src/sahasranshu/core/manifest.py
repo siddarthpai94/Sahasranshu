@@ -2,6 +2,7 @@ import json
 from dataclasses import dataclass
 from pathlib import Path
 
+
 @dataclass(frozen=True)
 class Manifest:
     doc_id: str
@@ -9,6 +10,7 @@ class Manifest:
     publication_date: str
     source_page: str
     relative_path: str
+
 
 def load_manifest(path: str | Path) -> Manifest:
     p = Path(path)
