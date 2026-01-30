@@ -1,53 +1,65 @@
 {
   "stances": [
     {
-      "topic": "Inflation",
-      "category": "Cautious",
-      "confidence": 0.9,
-      "evidence": "Inflation has made progress toward the Committee's 2 percent objective but remains somewhat elevated."
+      "topic": "Lowering the federal funds rate",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
     },
     {
-      "topic": "Economic Activity",
-      "category": "Supportive",
-      "confidence": 0.85,
-      "evidence": "Recent indicators suggest that economic activity has continued to expand at a solid pace."
+      "topic": "Maximum employment goal",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "The Committee seeks to achieve maximum employment... The Committee is strongly committed to supporting maximum employment."
     },
     {
-      "topic": "Labor Market",
-      "category": "Neutral",
-      "confidence": 0.8,
-      "evidence": "Labor market conditions have generally eased, and the unemployment rate has moved up but remains low."
-    }
-  ],
-  "deltas": [
-    {
-      "topic": "Inflation Outlook",
-      "change_type": "strengthened",
-      "previous_stance": "Inflation remains elevated.",
-      "current_stance": "Inflation has made progress... but remains somewhat elevated.",
-      "explanation": "The committee now explicitly acknowledges 'progress' toward the target, signalling increased confidence in disinflation."
+      "topic": "2 percent inflation target",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "The Committee seeks to achieve... inflation at the rate of 2 percent over the longer run... The Committee is strongly committed to... returning inflation to its 2 percent objective."
     },
     {
-      "topic": "Job Gains",
-      "change_type": "weakened",
-      "previous_stance": "Job gains have moderated.",
-      "current_stance": "Labor market conditions have generally eased.",
-      "explanation": "Shift from describing 'moderation' (active slowing) to 'eased' (passive state), suggesting a softer labor market view."
-    }
-  ],
-  "hypotheses": [
+      "topic": "Balance sheet reduction (Quantitative Tightening)",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities."
+    },
     {
-      "mechanism": "The Fed is preparing to cut rates in Q1 2025 due to the 'progress' on inflation, shifting focus to preventing labor market deterioration.",
-      "falsifiers": [
-        "Monthly core PCE re-accelerates above 0.3%",
-        "Unemployment rate drops back below 4.0%"
-      ],
-      "confidence": 0.75
+      "topic": "Future interest rate adjustments",
+      "category": "cautious",
+      "confidence": 0.95,
+      "evidence": "In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks."
+    },
+    {
+      "topic": "Maintaining the previous federal funds rate target range",
+      "category": "opposed",
+      "confidence": 1.0,
+      "evidence": "Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent."
+    },
+    {
+      "topic": "Lowering the interest rate on reserve balances",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024."
+    },
+    {
+      "topic": "Lowering the primary credit rate (Discount Rate)",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024."
+    },
+    {
+      "topic": "Reinvestment of principal payments from agency debt and MBS",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities."
     }
   ],
+  "deltas": [],
+  "hypotheses": [],
   "meta": {
     "current_date": "2024-12-18",
     "previous_date": "N/A"
   },
-  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Inflation | **Cautious** | 0.9 | Inflation has made progress toward the Committee's 2 percent objective but remains somewhat elevated. |\n| Economic Activity | **Supportive** | 0.85 | Recent indicators suggest that economic activity has continued to expand at a solid pace. |\n| Labor Market | **Neutral** | 0.8 | Labor market conditions have generally eased, and the unemployment rate has moved up but remains low. |\n\n## 2. Delta Analysis (vs Prior Meeting)\n\n### Inflation Outlook: STRENGTHENED\n> The committee now explicitly acknowledges 'progress' toward the target, signalling increased confidence in disinflation.\n\n- **Previous**: Inflation remains elevated.\n- **Current**: Inflation has made progress... but remains somewhat elevated.\n\n### Job Gains: WEAKENED\n> Shift from describing 'moderation' (active slowing) to 'eased' (passive state), suggesting a softer labor market view.\n\n- **Previous**: Job gains have moderated.\n- **Current**: Labor market conditions have generally eased.\n\n## 3. Hypotheses & Falsifiers\n\n### Hypothesis (0.75 confidence)\nThe Fed is preparing to cut rates in Q1 2025 due to the 'progress' on inflation, shifting focus to preventing labor market deterioration.\n\n**Falsifiers:**\n- Monthly core PCE re-accelerates above 0.3%\n- Unemployment rate drops back below 4.0%\n\n"
+  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Lowering the federal funds rate | **supportive** | 1.0 | In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Maximum employment goal | **supportive** | 1.0 | The Committee seeks to achieve maximum employment... The Committee is strongly committed to supporting maximum employment. |\n| 2 percent inflation target | **supportive** | 1.0 | The Committee seeks to achieve... inflation at the rate of 2 percent over the longer run... The Committee is strongly committed to... returning inflation to its 2 percent objective. |\n| Balance sheet reduction (Quantitative Tightening) | **supportive** | 1.0 | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Future interest rate adjustments | **cautious** | 0.95 | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Maintaining the previous federal funds rate target range | **opposed** | 1.0 | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Lowering the interest rate on reserve balances | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Lowering the primary credit rate (Discount Rate) | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |\n| Reinvestment of principal payments from agency debt and MBS | **supportive** | 1.0 | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |\n\n"
 }

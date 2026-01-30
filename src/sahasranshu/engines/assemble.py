@@ -15,13 +15,10 @@ async def run_pipeline(
     if previous_text:
         deltas = await detect_deltas(previous_text, text, llm_client)
 
-    # Add metadata for UI
-    analysis["meta"] = {
-        "current_date": m.publication_date,
-        "previous_date": prev_date.strftime("%Y-%m-%d") if previous_text and 'prev_date' in locals() else "N/A"
-    }
+    # Generate hypotheses
+    hypotheses = await generate_hypotheses(deltas, llm_client)
 
-    return {"stances": stances, "deltas": deltas, "hypotheses": hypotheses, "meta": analysis["meta"]}
+    return {"stances": stances, "deltas": deltas, "hypotheses": hypotheses}
 
 
 from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
