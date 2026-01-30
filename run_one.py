@@ -57,55 +57,64 @@ def main():
     if args.use_llm or args.mock:
         # prepare text
         text = _pages_to_text(pages)
-        
+
         # ---------------------------------------------------------
         # FIND PREVIOUS MANIFEST
         # ---------------------------------------------------------
         previous_text = None
-        prev_date = None # Initialize prev_date for later use
+        prev_date = None  # Initialize prev_date for later use
         try:
             from datetime import datetime
+
             current_date = datetime.strptime(m.publication_date, "%Y-%m-%d")
-            
+
             # Find previous manifest to do delta analysis
             # 1. List all available manifests
-            project_root = Path(__file__).parent.parent # Assuming script is in sahasranshu/scripts/
+            project_root = Path(
+                __file__
+            ).parent.parent  # Assuming script is in sahasranshu/scripts/
             # Recursive glob to satisfy user directory structure
             all_manifests = []
-            for f in project_root.glob("data/US/FED/2024/*/manifests/*.json"): # Assuming pattern
-                 # Skip the current one or anything that's not a manifest file
-                 if f.resolve() == Path(manifest_path).resolve():
-                     continue
-                 
-                 try:
-                     candidate = load_manifest(f)
-                     c_date = datetime.strptime(candidate.publication_date, "%Y-%m-%d")
-                     if c_date < current_date:
-                         all_manifests.append((c_date, f))
-                 except Exception:
-                     # ignore parse errors or non-manifests
-                     pass
-            
+            for f in project_root.glob(
+                "data/US/FED/2024/*/manifests/*.json"
+            ):  # Assuming pattern
+                # Skip the current one or anything that's not a manifest file
+                if f.resolve() == Path(manifest_path).resolve():
+                    continue
+
+                try:
+                    candidate = load_manifest(f)
+                    c_date = datetime.strptime(candidate.publication_date, "%Y-%m-%d")
+                    if c_date < current_date:
+                        all_manifests.append((c_date, f))
+                except Exception:
+                    # ignore parse errors or non-manifests
+                    pass
+
             # Sort by date descending (closest to current is first)
             all_manifests.sort(key=lambda x: x[0], reverse=True)
-            
+
             if all_manifests:
                 prev_date, prev_path = all_manifests[0]
                 print(f"Found previous manifest: {prev_path} ({prev_date.date()})")
-                
+
                 # Load previous text
                 # We need to load the PDF->pages if processed, or just grab the file path from manifest
                 # For simplicity, assuming the 'processed' sibling exists as in the standard pipeline
-                # or we just re-process/re-read the text. 
+                # or we just re-process/re-read the text.
                 # Let's rely on the manifest -> text logic.
                 pm = load_manifest(prev_path)
                 prev_pdf_path = Path(pm.relative_path)
                 # Quick check if processed json exists
-                prev_processed_path = Path(prev_path).parent.parent / "processed" / f"{pm.doc_id}.pages.json"
-                
+                prev_processed_path = (
+                    Path(prev_path).parent.parent
+                    / "processed"
+                    / f"{pm.doc_id}.pages.json"
+                )
+
                 if prev_processed_path.exists():
-                     pt_obj = json.loads(prev_processed_path.read_text())
-                     previous_text = _pages_to_text(pt_obj["pages"])
+                    pt_obj = json.loads(prev_processed_path.read_text())
+                    previous_text = _pages_to_text(pt_obj["pages"])
                 else:
                     # Fallback: process it now (fast enough for one file)
                     print(f"Processing previous file on the fly: {prev_pdf_path}")
@@ -117,13 +126,13 @@ def main():
 
             else:
                 print("No previous manifest found.")
-                
+
         except Exception as e:
             print(f"Error finding previous manifest: {e}")
         # ---------------------------------------------------------
 
         analysis = None
-        project_root = Path(__file__).parent # run_one.py is in project root
+        project_root = Path(__file__).parent  # run_one.py is in project root
         processed_dir = Path(pdf_path.parent) / "processed"
 
         if args.mock:
@@ -137,10 +146,10 @@ def main():
                 analysis = {
                     "stances": [{"topic": "Mock Topic", "evidence": "Mock Evidence"}],
                     "deltas": [],
-                    "hypotheses": []
+                    "hypotheses": [],
                 }
-            
-        else: # Real LLM Call
+
+        else:  # Real LLM Call
             api_key = settings.gemini_api_key
             if not api_key:
                 raise RuntimeError(
@@ -154,7 +163,7 @@ def main():
             client = GeminiClient(
                 api_key=api_key,
                 model=settings.gemini_model,
-                retries=10, # Aggressive retries for free tier
+                retries=10,  # Aggressive retries for free tier
                 backoff_factor=2.0,
                 record_responses=bool(record_path),
                 record_path=record_path,
@@ -162,47 +171,55 @@ def main():
 
             print("Running analysis with live LLM (this will incur API usage)...")
             analysis = asyncio.get_event_loop().run_until_complete(
-                assemble.run_pipeline(text=text, llm_client=client, previous_text=previous_text)
+                assemble.run_pipeline(
+                    text=text, llm_client=client, previous_text=previous_text
+                )
             )
 
         # Post-Processing (Common for both mock and real LLM)
         # Inject Meta
-        if analysis is not None: # Ensure analysis was loaded/generated
+        if analysis is not None:  # Ensure analysis was loaded/generated
             if "meta" not in analysis:
                 analysis["meta"] = {}
             analysis["meta"]["current_date"] = m.publication_date
-            analysis["meta"]["previous_date"] = prev_date.strftime("%Y-%m-%d") if prev_date else "N/A"
-        
+            analysis["meta"]["previous_date"] = (
+                prev_date.strftime("%Y-%m-%d") if prev_date else "N/A"
+            )
+
             # Save output
             out_analysis = processed_dir / f"{m.doc_id}.analysis.json"
             out_analysis.write_text(json.dumps(analysis, ensure_ascii=False, indent=2))
             print("Wrote analysis:", out_analysis)
-            
+
             # Also render memo
             from sahasranshu.reporting.memo_renderer import render_memo
+
             memo_text = render_memo(analysis)
-            
+
             # Embed memo in analysis for easier frontend loading (CORS safe)
             analysis["memo_content"] = memo_text
-            
+
             out_memo = processed_dir / f"{m.doc_id}.memo.md"
             out_memo.write_text(memo_text)
             print("Wrote memo:", out_memo)
-            
+
             # Re-save analysis with the embedded memo
             out_analysis.write_text(json.dumps(analysis, ensure_ascii=False, indent=2))
-            
+
             # Update Web View
             try:
-                 import shutil
-                 web_view_json = project_root / "web_view" / "analysis.json"
-                 web_view_json.write_text(json.dumps(analysis, ensure_ascii=False, indent=2))
-                 
-                 web_view_memo = project_root / "web_view" / "memo.md"
-                 web_view_memo.write_text(memo_text)
-                 print(f"Updated Dashboard Data:\n  - {web_view_json}\n  - {web_view_memo}")
+                web_view_json = project_root / "web_view" / "analysis.json"
+                web_view_json.write_text(
+                    json.dumps(analysis, ensure_ascii=False, indent=2)
+                )
+
+                web_view_memo = project_root / "web_view" / "memo.md"
+                web_view_memo.write_text(memo_text)
+                print(
+                    f"Updated Dashboard Data:\n  - {web_view_json}\n  - {web_view_memo}"
+                )
             except Exception as e:
-                 print(f"Could not update dashboard: {e}")
+                print(f"Could not update dashboard: {e}")
 
 
 if __name__ == "__main__":
