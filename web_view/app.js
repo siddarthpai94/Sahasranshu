@@ -44,7 +44,8 @@ const MOCK_DATA = {
             ],
             "confidence": 0.75
         }
-    ]
+    ],
+    "memo_content": "# Sahasranshu Research Memo\n\n**Date:** Dec 18, 2024\n**Subject:** FOMC Statement Analysis\n\n## Executive Summary\nThe Federal Reserve has maintained its target range but signaled a clear shift in tone regarding inflation progress.\n\n## key Findings\n- **Inflation**: 'Progress' is now explicitly cited.\n- **Labor**: Describes conditions as 'eased' rather than just 'moderating'.\n\n## Conclusion\nA rate cut is likely in Q1."
 };
 
 async function loadAnalysis() {
@@ -79,18 +80,72 @@ async function loadAnalysis() {
                     renderStances(MOCK_DATA.stances);
                     renderDeltas(MOCK_DATA.deltas, mockMeta);
                     renderHypotheses(MOCK_DATA.hypotheses);
+
+                    if (MOCK_DATA.memo_content) {
+                        renderMemoContent(MOCK_DATA.memo_content);
+                    }
                     return;
                 }
             }
         }
 
         const data = await response.json();
+
+        let meta = null;
+        if (data.meta) {
+            meta = data.meta;
+        }
         renderStances(data.stances);
-        renderDeltas(data.deltas);
+        renderDeltas(data.deltas, meta);
         renderHypotheses(data.hypotheses);
+
+        // Render Embedded Memo
+        if (data.memo_content) {
+            renderMemoContent(data.memo_content);
+        } else {
+            // Fallback if missing
+            loadMemo();
+        }
 
     } catch (e) {
         console.error("Error parsing analysis data", e);
+        document.getElementById('memo-container').innerHTML = `<div class="error">Error loading data: ${e.message}</div>`;
+        document.getElementById('delta-container').innerHTML = `<div class="error">Error: ${e.message}</div>`;
+    }
+}
+
+function renderMemoContent(text) {
+    const container = document.getElementById('memo-container');
+    // Simple Markdown Renderer for Demo
+    let html = text
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^### (.*$)/gim, '<h4>$1</h4>')
+        .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+        .replace(/\n\n/gim, '<br><br>');
+
+    container.innerHTML = `<div style="white-space: pre-wrap; font-family: 'Inter', sans-serif;">${html}</div>`;
+}
+
+async function loadMemo() {
+    // Deprecated fallback
+    const container = document.getElementById('memo-container');
+    try {
+        const response = await fetch('memo.md');
+        if (!response.ok) throw new Error("Memo not found");
+        const text = await response.text();
+
+        // Simple Markdown Renderer for Demo
+        let html = text
+            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+            .replace(/^## (.*$)/gim, '<h3>$1</h3>')
+            .replace(/^### (.*$)/gim, '<h4>$1</h4>')
+            .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
+            .replace(/\n\n/gim, '<br><br>');
+
+        container.innerHTML = `<div style="white-space: pre-wrap; font-family: 'Inter', sans-serif;">${html}</div>`;
+    } catch (e) {
+        container.innerHTML = "<p class='dim'>Memo not available in preview.</p>";
     }
 }
 

@@ -16,6 +16,7 @@ echo "Running Sahasranshu on Dec 2024 FOMC Statement..."
 echo "Note: This will automatically compare it with the Nov 2024 statement if found."
 
 # Run the pipeline
+# Run the pipeline (Live Mode - Uses Gemini API)
 PYTHONPATH=src .venv/bin/python run_one.py data/US/FED/2024/Dec/manifests/2024-12-18_FOMC_Statement.json --use-llm
 
 echo "Done."
