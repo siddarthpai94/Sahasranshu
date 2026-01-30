@@ -69,7 +69,6 @@ jobs:
         uses: codecov/codecov-action@v3
 
   llm-tests:
-    if: secrets.GEMINI_API_KEY != ''
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -97,6 +96,7 @@ jobs:
           pip install -e '.[dev]'
 
       - name: Run LLM integration tests
+        if: env.GEMINI_API_KEY != ''
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
