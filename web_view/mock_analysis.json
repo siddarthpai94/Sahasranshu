@@ -1,0 +1,48 @@
+{
+    "stances": [
+        {
+            "topic": "Inflation",
+            "category": "Cautious",
+            "confidence": 0.9,
+            "evidence": "Inflation has made progress toward the Committee's 2 percent objective but remains somewhat elevated."
+        },
+        {
+            "topic": "Economic Activity",
+            "category": "Supportive",
+            "confidence": 0.85,
+            "evidence": "Recent indicators suggest that economic activity has continued to expand at a solid pace."
+        },
+        {
+            "topic": "Labor Market",
+            "category": "Neutral",
+            "confidence": 0.8,
+            "evidence": "Labor market conditions have generally eased, and the unemployment rate has moved up but remains low."
+        }
+    ],
+    "deltas": [
+        {
+            "topic": "Inflation Outlook",
+            "change_type": "strengthened",
+            "previous_stance": "Inflation remains elevated.",
+            "current_stance": "Inflation has made progress... but remains somewhat elevated.",
+            "explanation": "The committee now explicitly acknowledges 'progress' toward the target, signalling increased confidence in disinflation."
+        },
+        {
+            "topic": "Job Gains",
+            "change_type": "weakened",
+            "previous_stance": "Job gains have moderated.",
+            "current_stance": "Labor market conditions have generally eased.",
+            "explanation": "Shift from describing 'moderation' (active slowing) to 'eased' (passive state), suggesting a softer labor market view."
+        }
+    ],
+    "hypotheses": [
+        {
+            "mechanism": "The Fed is preparing to cut rates in Q1 2025 due to the 'progress' on inflation, shifting focus to preventing labor market deterioration.",
+            "falsifiers": [
+                "Monthly core PCE re-accelerates above 0.3%",
+                "Unemployment rate drops back below 4.0%"
+            ],
+            "confidence": 0.75
+        }
+    ]
+}

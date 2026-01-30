@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     """Application settings."""
 
     gemini_api_key: str = ""
-    gemini_model: str = "gemini-2.0-flash"
+    gemini_model: str = "gemini-2.0-flash-lite"
     log_level: str = "INFO"
     cache_dir: Path = Path(".cache")
     enable_cache: bool = True

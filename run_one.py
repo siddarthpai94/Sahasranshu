@@ -128,8 +128,8 @@ def main():
         client = GeminiClient(
             api_key=api_key,
             model=settings.gemini_model,
-            retries=5, # Increased for better reliability on free tier
-            backoff_factor=3.0, # Slower backoff for rate limits
+            retries=10, # Aggressive retries for free tier
+            backoff_factor=2.0,
             record_responses=bool(record_path),
             record_path=record_path,
         )
@@ -149,6 +149,15 @@ def main():
         out_memo = Path(pdf_path.parent) / "processed" / f"{m.doc_id}.memo.md"
         out_memo.write_text(memo_text)
         print("Wrote memo:", out_memo)
+        
+        # Update Web View
+        try:
+             import shutil
+             web_view_path = Path("web_view/analysis.json")
+             web_view_path.write_text(json.dumps(analysis, ensure_ascii=False, indent=2))
+             print("Updated Dashboard Data:", web_view_path)
+        except Exception as e:
+             print(f"Could not update dashboard: {e}")
 
 
 if __name__ == "__main__":
