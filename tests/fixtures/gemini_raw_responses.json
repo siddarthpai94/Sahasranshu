@@ -1,0 +1,18 @@
+{
+  "stance_valid": {
+    "raw": "Result:\n{\"stances\":[{\"topic\":\"inflation\",\"category\":\"cautious\",\"confidence\":0.92,\"evidence\":\"Inflation has made progress toward the Committee’s 2 percent objective but remains somewhat elevated.\"}]}\n",
+    "expected": {"stances": [{"topic": "inflation", "category": "cautious", "confidence": 0.92, "evidence": "Inflation has made progress toward the Committee’s 2 percent objective but remains somewhat elevated."}]}
+  },
+  "stance_malformed_trailing_comma": {
+    "raw": "Output: {\"topic\": \"Test\", \"category\": \"supportive\", }",
+    "expected": {"topic": "Test", "category": "supportive"}
+  },
+  "hypotheses_array_inline": {
+    "raw": "Hypotheses:\n[{\"mechanism\": \"Weak demand reduces inflationary pressures\", \"falsifiers\": [\"Inflation accelerates above 3%\"], \"confidence\": 0.7}]",
+    "expected": [{"mechanism": "Weak demand reduces inflationary pressures", "falsifiers": ["Inflation accelerates above 3%"], "confidence": 0.7}]
+  },
+  "wrapped_with_text_and_codeblock": {
+    "raw": "Here is the response:\n```json\n{\"topic\": \"Test\", \"value\": 123}\n```",
+    "expected": {"topic": "Test", "value": 123}
+  }
+}

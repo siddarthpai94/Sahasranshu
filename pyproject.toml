@@ -28,10 +28,12 @@ dev = [
   "black",
   "isort",
   "mypy",
-  "codecov"
+  "codecov",
+  "google-generativeai"
 ]
 
 [tool.pytest.ini_options]
 markers = [
-  "integration: mark tests as integration tests"
+  "integration: mark tests as integration tests",
+  "llm: mark tests that call external LLM providers (requires GEMINI_API_KEY)"
 ]

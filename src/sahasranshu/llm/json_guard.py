@@ -6,9 +6,17 @@ from typing import Any
 
 
 def parse_json_response(response: str) -> Any:
-    """Parse JSON from LLM response with error handling."""
-    # Try to extract JSON from response
-    json_match = re.search(r"\{.*\}", response, re.DOTALL)
+    """Parse JSON (object or array) from LLM response with error handling."""
+    # Try to extract both object and array
+    obj_match = re.search(r"(\{.*\})", response, re.DOTALL)
+    arr_match = re.search(r"(\[.*\])", response, re.DOTALL)
+
+    # Prefer the match that appears earlier in the text (covers array wrapped responses)
+    json_match = None
+    if obj_match and arr_match:
+        json_match = obj_match if obj_match.start() < arr_match.start() else arr_match
+    else:
+        json_match = obj_match or arr_match
 
     if json_match:
         json_str = json_match.group()

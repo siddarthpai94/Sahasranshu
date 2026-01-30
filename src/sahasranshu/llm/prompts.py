@@ -49,3 +49,17 @@ Identify deltas in JSON format with fields:
 
 Return only valid JSON."""
 )
+
+HYPOTHESIS_PROMPT = PromptTemplate(
+    """Given the following list of deltas (in JSON), generate testable hypotheses explaining each change.
+
+Deltas:
+{deltas}
+
+Output JSON array of hypotheses with fields:
+- mechanism: str
+- falsifiers: list[str]
+- confidence: float (0-1)
+
+Return only valid JSON."""
+)

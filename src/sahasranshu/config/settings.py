@@ -14,6 +14,10 @@ class Settings(BaseSettings):
     enable_cache: bool = True
     output_dir: Path = Path("results/")
 
+    # LLM recording options
+    llm_record_responses: bool = False
+    llm_records_dir: Path = Path("tests/fixtures/gemini_responses")
+
     class Config:
         env_file = ".env"
         case_sensitive = False

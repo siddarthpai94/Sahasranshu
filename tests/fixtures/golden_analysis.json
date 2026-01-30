@@ -1,0 +1,26 @@
+{
+  "stances": [
+    {
+      "topic": "inflation",
+      "category": "cautious",
+      "confidence": 0.92,
+      "evidence": "Inflation has made progress toward the Committee’s 2 percent objective but remains somewhat elevated."
+    }
+  ],
+  "deltas": [
+    {
+      "topic": "policy_rate",
+      "change_type": "weakened",
+      "previous_stance": "tightening",
+      "current_stance": "easing",
+      "explanation": "The Committee lowered the target range for the federal funds rate by 1/4 percentage point."
+    }
+  ],
+  "hypotheses": [
+    {
+      "mechanism": "Weaker inflation readings and easing labor markets reduced the need for restrictive policy.",
+      "falsifiers": ["Inflation accelerates above 3%", "Labor market tightens unexpectedly"],
+      "confidence": 0.7
+    }
+  ]
+}

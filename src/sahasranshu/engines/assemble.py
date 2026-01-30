@@ -21,19 +21,26 @@ async def run_pipeline(
     return {"stances": stances, "deltas": deltas, "hypotheses": hypotheses}
 
 
+from sahasranshu.llm.prompts import (
+    STANCE_EXTRACTION_PROMPT,
+    DELTA_DETECTION_PROMPT,
+    HYPOTHESIS_PROMPT,
+)
+
+
 async def extract_stances(text: str, llm_client) -> list:
-    """Extract stances from text."""
-    # Placeholder
-    return []
+    """Extract stances from text using the LLM client."""
+    prompt = STANCE_EXTRACTION_PROMPT.format(text=text)
+    return llm_client.extract_json(prompt)
 
 
 async def detect_deltas(previous: str, current: str, llm_client) -> list:
-    """Detect deltas between versions."""
-    # Placeholder
-    return []
+    """Detect deltas between versions using the LLM client."""
+    prompt = DELTA_DETECTION_PROMPT.format(previous=previous, current=current)
+    return llm_client.extract_json(prompt)
 
 
 async def generate_hypotheses(deltas: list, llm_client) -> list:
-    """Generate hypotheses from deltas."""
-    # Placeholder
-    return []
+    """Generate hypotheses from deltas using the LLM client."""
+    prompt = HYPOTHESIS_PROMPT.format(deltas=deltas)
+    return llm_client.extract_json(prompt)

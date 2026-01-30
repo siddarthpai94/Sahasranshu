@@ -41,7 +41,20 @@ uv sync
 sahasranshu run --input data/samples/ --output results/
 ```
 
+You can also use the quick helper script `run_one.py` to process a single manifest and (optionally) call the live LLM:
+
+```bash
+# Process PDF -> pages
+python run_one.py data/US/FED/2024/Dec/manifests/2024-12-18_FOMC_Statement.json
+
+# Run analysis with live Gemini API (set GEMINI_API_KEY in env)
+python run_one.py --use-llm --record-llm
+
+You can also set `LLM_RECORD_RESPONSES=1` in your environment or `.env` to enable recording by default.```
+
 For more examples, see [examples/](examples/) directory.
+
+> ⚠️ **Security note:** Recorded LLM responses may contain generated text that references source content. Do not commit files containing secrets or private data. Use `.env` for API keys and ensure `GEMINI_API_KEY` is not checked into version control.
 
 ## Documentation
 
