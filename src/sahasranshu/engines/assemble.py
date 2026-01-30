@@ -2,6 +2,9 @@
 
 from typing import Any, Dict
 
+from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
+                                     STANCE_EXTRACTION_PROMPT)
+
 
 async def run_pipeline(
     text: str, llm_client, previous_text: str = None
@@ -19,10 +22,6 @@ async def run_pipeline(
     hypotheses = await generate_hypotheses(deltas, llm_client)
 
     return {"stances": stances, "deltas": deltas, "hypotheses": hypotheses}
-
-
-from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
-                                     STANCE_EXTRACTION_PROMPT)
 
 
 async def extract_stances(text: str, llm_client) -> list:

@@ -36,7 +36,7 @@ def test_retry_and_audit_written(tmp_path, monkeypatch):
     assert audit_file.exists()
     lines = audit_file.read_text(encoding="utf-8").strip().splitlines()
     assert len(lines) >= 2
-    entries = [json.loads(l) for l in lines]
+    entries = [json.loads(line) for line in lines]
     assert any(not e.get("success", True) for e in entries)
     assert any(e.get("success", False) is False for e in entries) or any(
         e.get("success", True) for e in entries
