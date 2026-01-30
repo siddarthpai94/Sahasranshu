@@ -19,3 +19,19 @@ where = ["src"]
 
 [project.scripts]
 sahasranshu = "sahasranshu.cli:app"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov",
+  "ruff",
+  "black",
+  "isort",
+  "mypy",
+  "codecov"
+]
+
+[tool.pytest.ini_options]
+markers = [
+  "integration: mark tests as integration tests"
+]

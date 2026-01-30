@@ -11,8 +11,5 @@ def hello() -> None:
     typer.echo("Sahasranshu CLI is working")
 
 def run() -> None:
-    # This is the canonical entrypoint for Typer apps.
     app()
 
-if __name__ == "__main__":
-    run()

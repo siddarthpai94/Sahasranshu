@@ -1,0 +1,23 @@
+{
+  "doc_id": "US_FED_2024-12-18_FOMC_Statement",
+  "title": "FOMC Statement – December 18, 2024",
+  "jurisdiction": "US",
+  "institution": "Federal Reserve",
+  "policy_body": "FOMC",
+  "publication_date": "2024-12-18",
+
+  "source": {
+    "publisher": "Federal Reserve Board",
+    "source_page": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20241218a.htm",
+    "document_type": "Monetary Policy Statement"
+  },
+
+  "file": {
+    "relative_path": "data/US/FED/2024/Dec/data/US/FED/2024/Dec/2024-12-18_FOMC_Statement.pdf",
+    "checksum_sha256": "9c21bc7aa2b6e8014ed3fac9d684093be0b8bf4cd61454579debc5e40b733ed0",
+    "format": "pdf",
+    "language": "en"
+  },
+
+  "notes": "Scheduled FOMC meeting statement"
+}
