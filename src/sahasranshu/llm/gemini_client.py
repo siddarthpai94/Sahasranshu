@@ -16,9 +16,9 @@ class GeminiClient:
         retries: int = 2,
         backoff_factor: float = 1.0,
         record_responses: bool = False,
-        record_path: str = None,
-        audit_enabled: bool = None,
-        audit_path: str = None,
+        record_path: str | None = None,
+        audit_enabled: bool | None = None,
+        audit_path: str | None = None,
     ):
         """Initialize Gemini client.
 

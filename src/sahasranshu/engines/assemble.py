@@ -7,7 +7,7 @@ from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
 
 
 async def run_pipeline(
-    text: str, llm_client, previous_text: str = None
+    text: str, llm_client, previous_text: str | None = None
 ) -> Dict[str, Any]:
     """Run end-to-end analysis pipeline."""
     # Extract stances
