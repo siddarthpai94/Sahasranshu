@@ -29,7 +29,8 @@ dev = [
   "isort",
   "mypy",
   "codecov",
-  "google-generativeai"
+  # Pin the SDK to a compatible major range to avoid breaking changes
+  "google-generativeai>=1.0.0,<2.0.0"
 ]
 
 [tool.pytest.ini_options]

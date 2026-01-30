@@ -49,8 +49,17 @@ python run_one.py data/US/FED/2024/Dec/manifests/2024-12-18_FOMC_Statement.json
 
 # Run analysis with live Gemini API (set GEMINI_API_KEY in env)
 python run_one.py --use-llm --record-llm
+```
 
-You can also set `LLM_RECORD_RESPONSES=1` in your environment or `.env` to enable recording by default.```
+You can also set `LLM_RECORD_RESPONSES=1` in your environment or `.env` to enable recording by default.
+
+New helpers:
+
+- `scripts/convert_llm_records.py` - convert recorded `*_parsed.json` files into reviewed candidate golden fixtures. See `python scripts/convert_llm_records.py --help` for options.
+- `scripts/generate_blog_docx.py` - convert `docs/Blogpost.md` into `docs/Blogpost.docx` (requires `python-docx`). Example: `python scripts/generate_blog_docx.py`.
+- Gemini calls include a per-request `timeout` and `retries` with exponential backoff and produce an audit log by default at `.cache/llm_audit.jsonl`.
+
+
 
 For more examples, see [examples/](examples/) directory.
 

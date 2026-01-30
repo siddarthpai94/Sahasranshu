@@ -18,7 +18,8 @@ def test_llm_can_return_parseable_json():
         pytest.skip("GEMINI_API_KEY not configured; skipping live LLM test")
 
     settings = Settings()
-    client = GeminiClient(api_key=api_key, model=settings.gemini_model)
+    # Use a modest timeout and limited retries to avoid long CI hangs
+    client = GeminiClient(api_key=api_key, model=settings.gemini_model, timeout=15, retries=1)
 
     # Ask the model to output only JSON (object or array). The json_guard will parse it.
     prompt = 'Please output only valid JSON (an object or array). Example: {"probe": "llm_integration_test"}'

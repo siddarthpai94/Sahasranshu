@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     llm_record_responses: bool = False
     llm_records_dir: Path = Path("tests/fixtures/gemini_responses")
 
+    # LLM audit / telemetry
+    llm_audit_enabled: bool = True
+    llm_audit_path: Path = Path(".cache/llm_audit.jsonl")
+
     class Config:
         env_file = ".env"
         case_sensitive = False
