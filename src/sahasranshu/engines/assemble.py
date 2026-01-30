@@ -2,8 +2,11 @@
 
 from typing import Any, Dict
 
-from sahasranshu.llm.prompts import (DELTA_DETECTION_PROMPT, HYPOTHESIS_PROMPT,
-                                     STANCE_EXTRACTION_PROMPT)
+from sahasranshu.llm.prompts import (
+    DELTA_DETECTION_PROMPT,
+    HYPOTHESIS_PROMPT,
+    STANCE_EXTRACTION_PROMPT,
+)
 
 
 async def run_pipeline(

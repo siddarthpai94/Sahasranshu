@@ -40,3 +40,7 @@ markers = [
   "integration: mark tests as integration tests",
   "llm: mark tests that call external LLM providers (requires GEMINI_API_KEY)"
 ]
+
+[tool.isort]
+profile = "black"
+line_length = 88

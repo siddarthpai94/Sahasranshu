@@ -97,7 +97,7 @@ body {
     display: grid;
     grid-template-columns: 1.2fr 1.5fr;
     gap: 2rem;
-    grid-template-areas: 
+    grid-template-areas:
         "deltas stances"
         "deltas hypotheses";
 }

@@ -22,4 +22,3 @@ This memo analyzes the stance of the latest policy statement and compares it wit
 | Lowering the interest rate on reserve balances | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |
 | Lowering the primary credit rate (Discount Rate) | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |
 | Reinvestment of principal payments from agency debt and MBS | **supportive** | 1.0 | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |
-
