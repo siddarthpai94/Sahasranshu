@@ -21,7 +21,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Diagnostics: Python & pip info
+      - name: "Diagnostics: Python & pip info"
         run: |
           echo "### Python info"
           python --version || python3 --version || true
