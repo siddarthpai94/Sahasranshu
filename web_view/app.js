@@ -168,7 +168,10 @@ function renderHypotheses(hypotheses) {
 
     container.innerHTML = hypotheses.map(h => `
         <div class="hypo-card">
-            <div class="hypo-badge">CONFIDENCE: ${(h.confidence * 100).toFixed(0)}%</div>
+            <div class="hypo-header">
+                <span class="hypo-title">MODEL_HYPOTHESIS α</span>
+                <div class="hypo-badge">CONFIDENCE: ${(h.confidence * 100).toFixed(0)}%</div>
+            </div>
             <div class="hypo-text">${h.mechanism}</div>
             <div class="falsifier-section">
                 <span class="falsifier-label">Falsification Criteria</span>
@@ -189,28 +192,23 @@ function renderMemo(text, data = {}) {
     const totalStances = stances.length || 1;
     const supportive = stances.filter(s => s.category.toLowerCase() === 'supportive').length;
     const cautious = stances.filter(s => s.category.toLowerCase() === 'cautious').length;
-
-    // Sentiment: % supportive - % cautious
     const sentimentScore = Math.round(((supportive - cautious) / totalStances) * 100);
     const sentimentLabel = sentimentScore > 10 ? 'HAWKISH' : (sentimentScore < -10 ? 'DOVISH' : 'BALANCED');
-
-    // Confidence: Average of stance confidence
     const avgConfidence = Math.round((stances.reduce((acc, s) => acc + (s.confidence || 0), 0) / totalStances) * 100);
-
-    // Delta Intensity: (Number of deltas / topics) * 100
     const deltaCount = data.deltas?.length || 0;
     const deltaIntensity = Math.min(100, Math.round((deltaCount / Math.max(1, totalStances)) * 100));
 
-    // 2. Process Markdown Content
+    // 2. Advanced Markdown Processing
     let bodyHtml = text
-        .replace(/^# (.*$)/gim, '') // Remove main title (we use our own header)
-        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
-        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^# (.*$)/gim, '') // Title in header
+        .replace(/^## (.*$)/gim, '<h2 class="memo-section-header"><span>$1</span></h2>')
+        .replace(/^### (.*$)/gim, '<h3 class="memo-sub-header">$1</h3>')
+        .replace(/^> \*\*BLUF.*?\*\* (.*$)/gim, '<div class="bluf-box"><div class="bluf-tag">EXECUTIVE BLUF</div>$1</div>')
         .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-        .replace(/^> \*\*BLUF\*\* (.*$)/gim, '<div class="bluf-box">$1</div>')
+        .replace(/^- (.*$)/gim, '<div class="bullet-item"><span>$1</span></div>')
         .replace(/\n\n/gim, '<br><br>');
 
-    // Enhanced Table Conversion
+    // Robust Table Conversion
     if (bodyHtml.includes('|')) {
         const rows = bodyHtml.split('<br><br>');
         for (let i = 0; i < rows.length; i++) {
@@ -230,7 +228,7 @@ function renderMemo(text, data = {}) {
         }
     }
 
-    // 3. Assemble Premium Document
+    // 3. Document Metadata
     const docId = data.meta?.doc_id || "SAHASRANSHU_CORE";
     const date = data.meta?.current_date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
@@ -241,8 +239,10 @@ function renderMemo(text, data = {}) {
                 <div class="memo-classification">L3 EXECUTIVE</div>
             </div>
             <h1>Intelligence Memo</h1>
-            <div style="font-family: var(--font-terminal); font-size: 10px; color: var(--text-muted); margin-top: 10px;">
-                REF: ${docId} / ${date}
+            <div class="memo-meta-strip">
+                <span>REF: ${docId}</span>
+                <span>DATE: ${date}</span>
+                <span class="auth-status">STATUS: AUTHENTICATED</span>
             </div>
         </div>
 
@@ -262,7 +262,7 @@ function renderMemo(text, data = {}) {
                 </div>
             </div>
             <div class="score-item">
-                <span class="score-label">Analysis Confidence</span>
+                <span class="score-label">Confidence</span>
                 <span class="score-value">${avgConfidence}%</span>
                 <div class="score-progress-bg">
                     <div class="score-progress-fill" style="width: ${avgConfidence}%"></div>
@@ -270,16 +270,13 @@ function renderMemo(text, data = {}) {
             </div>
         </div>
 
-        <div class="memo-body-content">
+        <div class="memo-content-area">
             ${bodyHtml}
         </div>
 
         <div class="signature-block">
-            <div class="sig-title">AUTHENTICATED BY</div>
-            <div class="sig-name">Sahasranshu Analytics Engine</div>
-            <div style="font-family: var(--font-terminal); font-size: 8px; color: var(--text-muted); margin-top: 5px;">
-                © 2026 DIGITAL SIGNATURE VERIFIED
-            </div>
+            <div class="sig-title">AUDITED & VALIDATED BY</div>
+            <div class="sig-line">SAHASRANSHU_ANALYTICS_V3</div>
         </div>
     `;
 
