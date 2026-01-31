@@ -40,192 +40,123 @@ const MOCK_DATA = {
             "mechanism": "The Fed is preparing to cut rates in Q1 2025 due to the 'progress' on inflation, shifting focus to preventing labor market deterioration.",
             "falsifiers": [
                 "Monthly core PCE re-accelerates above 0.3%",
-                "Unemployment rate drops back below 4.0%"
+                "Unemployment rate drops back below 4.0%",
+                "Wage growth re-accelerates in employment reports"
             ],
             "confidence": 0.75
         }
     ],
-    "memo_content": "# Sahasranshu Research Memo\n\n**Date:** Dec 18, 2024\n**Subject:** FOMC Statement Analysis\n\n## Executive Summary\nThe Federal Reserve has maintained its target range but signaled a clear shift in tone regarding inflation progress.\n\n## key Findings\n- **Inflation**: 'Progress' is now explicitly cited.\n- **Labor**: Describes conditions as 'eased' rather than just 'moderating'.\n\n## Conclusion\nA rate cut is likely in Q1."
+    "memo_content": "# Sahasranshu Research Memo\n\n**Date:** Dec 18, 2024\n**Subject:** FOMC Statement Analysis\n\n## Executive Summary\nThe Federal Reserve has maintained its target range but signaled a clear shift in tone regarding inflation progress.\n\n## Key Findings\n- **Inflation**: 'Progress' is now explicitly cited.\n- **Labor**: Describes conditions as 'eased' rather than just 'moderating'.\n\n## Conclusion\nA rate cut is likely in Q1."
 };
 
-async function loadAnalysis() {
+function initTerminalClock() {
+    const clock = document.getElementById('term-clock');
+    if (!clock) return;
+
+    setInterval(() => {
+        const now = new Date();
+        const h = String(now.getUTCHours()).padStart(2, '0');
+        const m = String(now.getUTCMinutes()).padStart(2, '0');
+        const s = String(now.getUTCSeconds()).padStart(2, '0');
+        clock.textContent = `${h}:${m}:${s} GMT`;
+    }, 1000);
+}
+
+async function loadTerminalData() {
+    initTerminalClock();
+
     try {
         let response;
         try {
-            // Priority 1: Local copy (if script copied it)
             response = await fetch('analysis.json');
-            if (!response.ok) throw new Error("Local analysis not found");
+            if (!response.ok) throw new Error("analysis.json not found");
         } catch (e1) {
             try {
-                // Priority 2: Direct link to processed folder (Demo specific path)
-                console.log("Checking relative processed path...");
-                response = await fetch('../data/US/FED/2024/Dec/processed/US_FED_2024-12-18_FOMC_Statement.analysis.json');
-                if (!response.ok) throw new Error("Processed analysis not found");
+                response = await fetch('mock_analysis.json');
+                if (!response.ok) throw new Error("mock_analysis.json not found");
             } catch (e2) {
-                // Priority 3: Mock data via FETCH (might fail on file://)
-                try {
-                    console.log("Falling back to mock file...");
-                    response = await fetch('mock_analysis.json');
-                    if (!response.ok) throw new Error("Mock file failed");
-                } catch (e3) {
-                    // FINAL FALLBACK: Embedded data (Always works)
-                    console.log("All fetches failed (likely CORS). Using embedded mock data.");
-
-                    // Mock Meta for Demo
-                    const mockMeta = {
-                        "current_date": "2024-12-18",
-                        "previous_date": "2024-11-07"
-                    };
-
-                    renderStances(MOCK_DATA.stances);
-                    renderDeltas(MOCK_DATA.deltas, mockMeta);
-                    renderHypotheses(MOCK_DATA.hypotheses);
-
-                    if (MOCK_DATA.memo_content) {
-                        renderMemoContent(MOCK_DATA.memo_content);
-                    }
-                    return;
-                }
+                console.log("[TERMINAL] Using embedded mock data");
+                renderTerminal(MOCK_DATA);
+                return;
             }
         }
 
         const data = await response.json();
-
-        let meta = null;
-        if (data.meta) {
-            meta = data.meta;
-        }
-        renderStances(data.stances);
-        renderDeltas(data.deltas, meta);
-        renderHypotheses(data.hypotheses);
-
-        // Render Embedded Memo
-        if (data.memo_content) {
-            renderMemoContent(data.memo_content);
-        } else {
-            // Fallback if missing
-            loadMemo();
-        }
+        renderTerminal(data);
 
     } catch (e) {
-        console.error("Error parsing analysis data", e);
-        document.getElementById('memo-container').innerHTML = `<div class="error">Error loading data: ${e.message}</div>`;
-        document.getElementById('delta-container').innerHTML = `<div class="error">Error: ${e.message}</div>`;
+        console.error("[TERMINAL ERROR]", e);
+        document.getElementById('memo-container').innerHTML =
+            `<p style="color: var(--red);">SYSTEM ERROR: ${e.message}</p>`;
     }
 }
 
-function renderMemoContent(text) {
-    const container = document.getElementById('memo-container');
-    // Simple Markdown Renderer for Demo
-    let html = text
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-        .replace(/^## (.*$)/gim, '<h3>$1</h3>')
-        .replace(/^### (.*$)/gim, '<h4>$1</h4>')
-        .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-        .replace(/\n\n/gim, '<br><br>');
+function renderTerminal(data) {
+    if (data.meta && data.meta.doc_id) {
+        const docEl = document.getElementById('doc-id');
+        if (docEl) docEl.textContent = data.meta.doc_id.toUpperCase().replace(/[^A-Z0-9]/g, '_');
+    }
 
-    container.innerHTML = `<div style="white-space: pre-wrap; font-family: 'Inter', sans-serif;">${html}</div>`;
-}
+    renderStances(data.stances);
+    renderDeltas(data.deltas);
+    renderHypotheses(data.hypotheses);
 
-async function loadMemo() {
-    // Deprecated fallback
-    const container = document.getElementById('memo-container');
-    try {
-        const response = await fetch('memo.md');
-        if (!response.ok) throw new Error("Memo not found");
-        const text = await response.text();
-
-        // Simple Markdown Renderer for Demo
-        let html = text
-            .replace(/^# (.*$)/gim, '<h1>$1</h1>')
-            .replace(/^## (.*$)/gim, '<h3>$1</h3>')
-            .replace(/^### (.*$)/gim, '<h4>$1</h4>')
-            .replace(/\*\*(.*)\*\*/gim, '<strong>$1</strong>')
-            .replace(/\n\n/gim, '<br><br>');
-
-        container.innerHTML = `<div style="white-space: pre-wrap; font-family: 'Inter', sans-serif;">${html}</div>`;
-    } catch (e) {
-        container.innerHTML = "<p class='dim'>Memo not available in preview.</p>";
+    if (data.memo_content) {
+        renderMemo(data.memo_content);
     }
 }
 
 function renderStances(stances) {
-    const container = document.getElementById('stance-container');
-    if (!stances) return;
+    const tbody = document.getElementById('stance-tbody');
+    if (!stances || !tbody) return;
 
-    container.innerHTML = stances.map(s => `
-        <div class="stance-item">
-            <span class="topic">${s.topic}</span>
-            <div class="category" style="color: ${getColorForCategory(s.category)}">${s.category}</div>
-            <span class="evidence">"${s.evidence}"</span>
-        </div>
+    tbody.innerHTML = stances.map(s => `
+        <tr class="data-update">
+            <td class="topic-cell">${s.topic.toUpperCase()}</td>
+            <td>
+                <span class="stance-pill pill-${s.category.toLowerCase()}">${s.category.toUpperCase()}</span>
+            </td>
+            <td class="confidence-cell">${(s.confidence * 100).toFixed(0)}%</td>
+            <td class="evidence-cell">${s.evidence}</td>
+        </tr>
     `).join('');
 }
 
-function getColorForCategory(cat) {
-    cat = cat.toLowerCase();
-    if (cat.includes('support') || cat.includes('eas')) return 'var(--accent-green)';
-    if (cat.includes('cautious') || cat.includes('tight')) return 'var(--accent-red)';
-    return 'var(--text-primary)';
-}
-
-function renderDeltas(deltas, meta) {
+function renderDeltas(deltas) {
     const container = document.getElementById('delta-container');
-    const header = document.getElementById('delta-header-text');
-
-    if (!deltas) return;
-
-    // Update Header with Dates if available
-    let prevLabel = "WAS";
-    let currLabel = "NOW";
-
-    if (meta) {
-        if (meta.previous_date) {
-            const d = new Date(meta.previous_date);
-            const month = d.toLocaleString('default', { month: 'short' }).toUpperCase(); // NOV
-            prevLabel = `${month} READ`;
-            header.innerHTML = `Delta Analysis <span class="highlight">vs ${month} ${d.getDate()}</span>`;
-        }
-        if (meta.current_date) {
-            const d = new Date(meta.current_date);
-            const month = d.toLocaleString('default', { month: 'short' }).toUpperCase(); // DEC
-            currLabel = `${month} READ`;
-        }
-    }
+    if (!deltas || !container) return;
 
     container.innerHTML = deltas.map(d => `
-        <div class="delta-item">
+        <div class="delta-block">
             <div class="delta-header">
-                <h3>${d.topic}</h3>
-                <span class="change-type ${d.change_type}">${d.change_type}</span>
+                <div class="delta-topic">${d.topic.toUpperCase()}</div>
+                <div class="delta-flag flag-${d.change_type}">${d.change_type.toUpperCase()}</div>
             </div>
-            <div class="diff-box">
-                <div class="diff-line">
-                    <span class="diff-label">${prevLabel}:</span>
-                    <span class="diff-val previous">${d.previous_stance}</span>
+            <div class="delta-comp">
+                <div class="comp-row">
+                    <span class="comp-label">PREV:</span>
+                    <span class="comp-prev">${d.previous_stance}</span>
                 </div>
-                <div class="diff-line">
-                    <span class="diff-label">${currLabel}:</span>
-                    <span class="diff-val current">${d.current_stance}</span>
+                <div class="comp-row">
+                    <span class="comp-label">CURR:</span>
+                    <span class="comp-curr">${d.current_stance}</span>
                 </div>
             </div>
-            <div class="explanation">
-                ${d.explanation}
-            </div>
+            <div class="delta-note">${d.explanation}</div>
         </div>
     `).join('');
 }
 
-function renderHypotheses(hyps) {
-    const container = document.getElementById('hypothesis-container');
-    if (!hyps) return;
+function renderHypotheses(hypotheses) {
+    const container = document.getElementById('hypo-container');
+    if (!hypotheses || !container) return;
 
-    container.innerHTML = hyps.map(h => `
-        <div class="hypothesis-item">
-            <strong class="mech">${h.mechanism}</strong>
-            <div class="falsifiers">
-                <strong>FALSIFIERS:</strong>
-                <ul>
+    container.innerHTML = hypotheses.map(h => `
+        <div class="hypo-card">
+            <div class="hypo-text">${h.mechanism}</div>
+            <div class="falsifier-section">
+                <span class="falsifier-label">Falsification Criteria</span>
+                <ul class="falsifier-list">
                     ${h.falsifiers.map(f => `<li>${f}</li>`).join('')}
                 </ul>
             </div>
@@ -233,4 +164,19 @@ function renderHypotheses(hyps) {
     `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', loadAnalysis);
+function renderMemo(text) {
+    const container = document.getElementById('memo-container');
+    if (!container) return;
+
+    let html = text
+        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+        .replace(/^- (.*$)/gim, '<p style="padding-left: 16px; border-left: 2px solid var(--orange); margin: 6px 0;">$1</p>')
+        .replace(/\n\n/gim, '<br><br>');
+
+    container.innerHTML = html;
+}
+
+document.addEventListener('DOMContentLoaded', loadTerminalData);

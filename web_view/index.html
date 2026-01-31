@@ -4,66 +4,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sahasranshu | Executive Intelligence</title>
+    <title>SAHASRANSHU TERMINAL</title>
     <link rel="stylesheet" href="style.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <div class="container">
-        <header class="top-bar">
-            <div class="logo">SAHASRANSHU <span class="badge">INTELLIGENCE</span></div>
-            <div class="meta">
-                <span id="doc-date">DEC 18, 2024</span>
-                <span class="divider">|</span>
-                <span id="doc-id">FOMC STATEMENT</span>
+    <!-- Terminal Header -->
+    <div class="terminal-bar">
+        <div class="terminal-logo">SAHASRANSHU</div>
+        <div class="terminal-status">
+            <div class="status-item">
+                <div class="live-indicator"></div>
+                <span>LIVE FEED</span>
             </div>
-        </header>
-
-        <main>
-            <section class="executive-summary">
-                <h1 class="headline">Policy Pivot Detected</h1>
-                <p class="sub-headline">Analysis reveals a definitive shift in language regarding inflation progress,
-                    signaling potential rate path adjustments.</p>
-            </section>
-
-            <div class="dashboard-grid">
-                <!-- Stance Map -->
-                <section class="card stance-map">
-                    <h2>Canonical Stances</h2>
-                    <div id="stance-container" class="stance-grid">
-                        <!-- Injected via JS -->
-                    </div>
-                </section>
-
-                <!-- Delta Feed -->
-                <section class="card delta-feed">
-                    <h2 id="delta-header-text">Delta Analysis <span class="highlight">vs Prior Meeting</span></h2>
-                    <div id="delta-container" class="delta-list">
-                        <!-- Injected via JS -->
-                    </div>
-                </section>
-
-                <!-- Full Memo -->
-                <section class="card memo-view">
-                    <h2>Generated <span class="highlight">Research Memo</span></h2>
-                    <div id="memo-container" class="markdown-body">
-                        Loading memo...
-                    </div>
-                </section>
-
-                <!-- Hypotheses -->
-                <section class="card hypotheses">
-                    <h2>Strategic Implications</h2>
-                    <div id="hypothesis-container">
-                        <!-- Injected via JS -->
-                    </div>
-                </section>
+            <div class="status-item">
+                <span>SYS:</span>
+                <span>ONLINE</span>
             </div>
-        </main>
+            <div class="status-item">
+                <span>DOC:</span>
+                <span id="doc-id">FOMC_2024_DEC</span>
+            </div>
+        </div>
+        <div class="terminal-clock" id="term-clock">00:00:00 GMT</div>
     </div>
+
+    <!-- Terminal Layout -->
+    <div class="terminal-layout">
+        <!-- Left: Deltas -->
+        <div class="window" style="grid-row: 1 / 3;">
+            <div class="window-header">
+                <div class="window-title">Delta Analysis</div>
+                <div class="window-badge">COMP</div>
+            </div>
+            <div class="window-content">
+                <div class="delta-stream" id="delta-container">
+                    <!-- JS Inject -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Top Center: Stances -->
+        <div class="window">
+            <div class="window-header">
+                <div class="window-title">Policy Stances</div>
+                <div class="window-badge">LIVE</div>
+            </div>
+            <div class="window-content">
+                <table class="stance-table">
+                    <thead>
+                        <tr>
+                            <th>TOPIC</th>
+                            <th>STANCE</th>
+                            <th>CONF</th>
+                            <th>EVIDENCE</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stance-tbody">
+                        <!-- JS Inject -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Right: Hypotheses -->
+        <div class="window" style="grid-row: 1 / 3;">
+            <div class="window-header">
+                <div class="window-title">Strategic Signals</div>
+                <div class="window-badge">PRED</div>
+            </div>
+            <div class="window-content">
+                <div class="hypo-list" id="hypo-container">
+                    <!-- JS Inject -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Center: Memo -->
+        <div class="window">
+            <div class="window-header">
+                <div class="window-title">Intelligence Memo</div>
+                <div class="window-badge">GEN</div>
+            </div>
+            <div class="window-content">
+                <div class="memo-doc" id="memo-container">
+                    <p style="color: var(--text-muted);">Loading terminal data...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ticker Footer -->
+        <div class="ticker-bar">
+            <div class="ticker-items">
+                <span>USD/JPY<span class="ticker-val">149.23</span></span>
+                <span>US10Y<span class="ticker-val">4.12%</span></span>
+                <span>SPX<span class="ticker-val">5980.4</span></span>
+                <span>DXY<span class="ticker-val">103.45</span></span>
+                <span>VIX<span class="ticker-val">13.2</span></span>
+            </div>
+            <div style="color: var(--text-muted); font-size: 10px;">SAHASRANSHU © 2026</div>
+        </div>
+    </div>
+
     <script src="app.js"></script>
 </body>
 

@@ -1,55 +1,61 @@
 {
   "stances": [
     {
-      "topic": "Lowering the federal funds rate",
+      "topic": "Federal Funds Rate Target Range",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
+      "evidence": "The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
     },
     {
-      "topic": "Maximum employment goal",
-      "category": "supportive",
-      "confidence": 1.0,
-      "evidence": "The Committee seeks to achieve maximum employment... The Committee is strongly committed to supporting maximum employment."
-    },
-    {
-      "topic": "2 percent inflation target",
-      "category": "supportive",
-      "confidence": 1.0,
-      "evidence": "The Committee seeks to achieve... inflation at the rate of 2 percent over the longer run... The Committee is strongly committed to... returning inflation to its 2 percent objective."
-    },
-    {
-      "topic": "Balance sheet reduction (Quantitative Tightening)",
+      "topic": "Reduction of Asset Holdings (Quantitative Tightening)",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities."
     },
     {
-      "topic": "Future interest rate adjustments",
+      "topic": "Inflation Target",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run."
+    },
+    {
+      "topic": "Future Policy Adjustments",
       "category": "cautious",
       "confidence": 0.95,
       "evidence": "In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks."
     },
     {
-      "topic": "Maintaining the previous federal funds rate target range",
+      "topic": "Maintaining Current Interest Rates (Dissenting Opinion)",
       "category": "opposed",
       "confidence": 1.0,
       "evidence": "Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent."
     },
     {
-      "topic": "Lowering the interest rate on reserve balances",
+      "topic": "Interest Rate on Reserve Balances",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024."
     },
     {
-      "topic": "Lowering the primary credit rate (Discount Rate)",
+      "topic": "Primary Credit Rate",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024."
+      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent."
     },
     {
-      "topic": "Reinvestment of principal payments from agency debt and MBS",
+      "topic": "Standing Overnight Reverse Repurchase Agreement Operations",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent... intended to support effective monetary policy implementation and the smooth functioning of short-term funding markets."
+    },
+    {
+      "topic": "Treasury Security Reinvestment Strategy",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities maturing in each calendar month that exceeds a cap of $25 billion per month."
+    },
+    {
+      "topic": "Agency Debt and MBS Reinvestment Strategy",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities."
@@ -61,5 +67,5 @@
     "current_date": "2024-12-18",
     "previous_date": "N/A"
   },
-  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Lowering the federal funds rate | **supportive** | 1.0 | In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Maximum employment goal | **supportive** | 1.0 | The Committee seeks to achieve maximum employment... The Committee is strongly committed to supporting maximum employment. |\n| 2 percent inflation target | **supportive** | 1.0 | The Committee seeks to achieve... inflation at the rate of 2 percent over the longer run... The Committee is strongly committed to... returning inflation to its 2 percent objective. |\n| Balance sheet reduction (Quantitative Tightening) | **supportive** | 1.0 | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Future interest rate adjustments | **cautious** | 0.95 | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Maintaining the previous federal funds rate target range | **opposed** | 1.0 | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Lowering the interest rate on reserve balances | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Lowering the primary credit rate (Discount Rate) | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |\n| Reinvestment of principal payments from agency debt and MBS | **supportive** | 1.0 | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |\n\n"
+  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Federal Funds Rate Target Range | **supportive** | 1.0 | The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Reduction of Asset Holdings (Quantitative Tightening) | **supportive** | 1.0 | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Inflation Target | **supportive** | 1.0 | The Committee seeks to achieve maximum employment and inflation at the rate of 2 percent over the longer run. |\n| Future Policy Adjustments | **cautious** | 0.95 | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Maintaining Current Interest Rates (Dissenting Opinion) | **opposed** | 1.0 | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Interest Rate on Reserve Balances | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Primary Credit Rate | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent. |\n| Standing Overnight Reverse Repurchase Agreement Operations | **supportive** | 1.0 | Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent... intended to support effective monetary policy implementation and the smooth functioning of short-term funding markets. |\n| Treasury Security Reinvestment Strategy | **supportive** | 1.0 | Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities maturing in each calendar month that exceeds a cap of $25 billion per month. |\n| Agency Debt and MBS Reinvestment Strategy | **supportive** | 1.0 | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |\n\n"
 }
