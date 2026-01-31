@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;600;800&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -35,7 +37,7 @@
     <!-- Terminal Layout -->
     <div class="terminal-layout">
         <!-- Left: Deltas -->
-        <div class="window" style="grid-row: 1 / 3;">
+        <div class="window" style="grid-column: 1; grid-row: 1 / 3;">
             <div class="window-header">
                 <div class="window-title">Delta Analysis</div>
                 <div class="window-badge">COMP</div>
@@ -48,7 +50,7 @@
         </div>
 
         <!-- Top Center: Stances -->
-        <div class="window">
+        <div class="window" style="grid-column: 2; grid-row: 1; max-height: 400px;">
             <div class="window-header">
                 <div class="window-title">Policy Stances</div>
                 <div class="window-badge">LIVE</div>
@@ -70,8 +72,21 @@
             </div>
         </div>
 
-        <!-- Right: Hypotheses -->
-        <div class="window" style="grid-row: 1 / 3;">
+        <!-- Right: Intelligence Memo -->
+        <div class="window" style="grid-column: 3; grid-row: 1 / 3; background: var(--bg-card);">
+            <div class="window-header" style="border-bottom: 2px solid var(--gold);">
+                <div class="window-title" style="color: var(--gold);">Intelligence Memo</div>
+                <div class="window-badge" style="background: var(--gold); color: var(--bg-black);">PREMIUM REPORT</div>
+            </div>
+            <div class="window-content" style="padding: 0;">
+                <div class="memo-doc" id="memo-container">
+                    <p style="color: var(--text-muted); padding: 20px;">Loading intelligence report...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Center: Strategic Signals -->
+        <div class="window" style="grid-column: 2; grid-row: 2;">
             <div class="window-header">
                 <div class="window-title">Strategic Signals</div>
                 <div class="window-badge">PRED</div>
@@ -83,29 +98,22 @@
             </div>
         </div>
 
-        <!-- Bottom Center: Memo -->
-        <div class="window">
-            <div class="window-header">
-                <div class="window-title">Intelligence Memo</div>
-                <div class="window-badge">GEN</div>
-            </div>
-            <div class="window-content">
-                <div class="memo-doc" id="memo-container">
-                    <p style="color: var(--text-muted);">Loading terminal data...</p>
-                </div>
-            </div>
-        </div>
-
         <!-- Ticker Footer -->
         <div class="ticker-bar">
-            <div class="ticker-items">
-                <span>USD/JPY<span class="ticker-val">149.23</span></span>
-                <span>US10Y<span class="ticker-val">4.12%</span></span>
-                <span>SPX<span class="ticker-val">5980.4</span></span>
-                <span>DXY<span class="ticker-val">103.45</span></span>
-                <span>VIX<span class="ticker-val">13.2</span></span>
+            <div class="ticker-content">
+                <div class="ticker-items">
+                    <span>USD/JPY <span class="ticker-val">149.23</span></span>
+                    <span>US10Y <span class="ticker-val">4.12%</span></span>
+                    <span>SPX <span class="ticker-val">5980.4</span></span>
+                    <span>DXY <span class="ticker-val">103.45</span></span>
+                    <span>VIX <span class="ticker-val">13.2</span></span>
+                    <!-- Duplicate for infinite loop -->
+                    <span>USD/JPY <span class="ticker-val">149.23</span></span>
+                    <span>US10Y <span class="ticker-val">4.12%</span></span>
+                    <span>SPX <span class="ticker-val">5980.4</span></span>
+                </div>
             </div>
-            <div style="color: var(--text-muted); font-size: 10px;">SAHASRANSHU © 2026</div>
+            <div class="footer-meta">SAHASRANSHU © 2026 | ACCESS_LEVEL: EXECUTIVE</div>
         </div>
     </div>
 

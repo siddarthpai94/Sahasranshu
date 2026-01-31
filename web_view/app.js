@@ -55,10 +55,15 @@ function initTerminalClock() {
 
     setInterval(() => {
         const now = new Date();
-        const h = String(now.getUTCHours()).padStart(2, '0');
-        const m = String(now.getUTCMinutes()).padStart(2, '0');
-        const s = String(now.getUTCSeconds()).padStart(2, '0');
-        clock.textContent = `${h}:${m}:${s} GMT`;
+        const options = {
+            timeZone: 'America/New_York',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        };
+        const estTime = now.toLocaleTimeString('en-US', options);
+        clock.textContent = `${estTime} EST`;
     }, 1000);
 }
 
@@ -102,7 +107,7 @@ function renderTerminal(data) {
     renderHypotheses(data.hypotheses);
 
     if (data.memo_content) {
-        renderMemo(data.memo_content);
+        renderMemo(data.memo_content, data);
     }
 }
 
@@ -110,16 +115,26 @@ function renderStances(stances) {
     const tbody = document.getElementById('stance-tbody');
     if (!stances || !tbody) return;
 
-    tbody.innerHTML = stances.map(s => `
-        <tr class="data-update">
-            <td class="topic-cell">${s.topic.toUpperCase()}</td>
-            <td>
-                <span class="stance-pill pill-${s.category.toLowerCase()}">${s.category.toUpperCase()}</span>
-            </td>
-            <td class="confidence-cell">${(s.confidence * 100).toFixed(0)}%</td>
-            <td class="evidence-cell">${s.evidence}</td>
-        </tr>
-    `).join('');
+    tbody.innerHTML = stances.map(s => {
+        const confPercent = (s.confidence * 100).toFixed(0);
+        return `
+            <tr class="data-update">
+                <td class="topic-cell">${s.topic}</td>
+                <td>
+                    <span class="stance-pill pill-${s.category.toLowerCase()}">${s.category.toUpperCase()}</span>
+                </td>
+                <td class="confidence-cell">
+                    <div class="conf-wrapper">
+                        <span class="conf-text">${confPercent}%</span>
+                        <div class="conf-bar-bg">
+                            <div class="conf-bar-fill" style="width: ${confPercent}%"></div>
+                        </div>
+                    </div>
+                </td>
+                <td class="evidence-cell">${s.evidence}</td>
+            </tr>
+        `;
+    }).join('');
 }
 
 function renderDeltas(deltas) {
@@ -153,6 +168,7 @@ function renderHypotheses(hypotheses) {
 
     container.innerHTML = hypotheses.map(h => `
         <div class="hypo-card">
+            <div class="hypo-badge">CONFIDENCE: ${(h.confidence * 100).toFixed(0)}%</div>
             <div class="hypo-text">${h.mechanism}</div>
             <div class="falsifier-section">
                 <span class="falsifier-label">Falsification Criteria</span>
@@ -164,19 +180,110 @@ function renderHypotheses(hypotheses) {
     `).join('');
 }
 
-function renderMemo(text) {
+function renderMemo(text, data = {}) {
     const container = document.getElementById('memo-container');
     if (!container) return;
 
-    let html = text
-        .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+    // 1. Calculate Executive Metrics
+    const stances = data.stances || [];
+    const totalStances = stances.length || 1;
+    const supportive = stances.filter(s => s.category.toLowerCase() === 'supportive').length;
+    const cautious = stances.filter(s => s.category.toLowerCase() === 'cautious').length;
+
+    // Sentiment: % supportive - % cautious
+    const sentimentScore = Math.round(((supportive - cautious) / totalStances) * 100);
+    const sentimentLabel = sentimentScore > 10 ? 'HAWKISH' : (sentimentScore < -10 ? 'DOVISH' : 'BALANCED');
+
+    // Confidence: Average of stance confidence
+    const avgConfidence = Math.round((stances.reduce((acc, s) => acc + (s.confidence || 0), 0) / totalStances) * 100);
+
+    // Delta Intensity: (Number of deltas / topics) * 100
+    const deltaCount = data.deltas?.length || 0;
+    const deltaIntensity = Math.min(100, Math.round((deltaCount / Math.max(1, totalStances)) * 100));
+
+    // 2. Process Markdown Content
+    let bodyHtml = text
+        .replace(/^# (.*$)/gim, '') // Remove main title (we use our own header)
         .replace(/^## (.*$)/gim, '<h2>$1</h2>')
         .replace(/^### (.*$)/gim, '<h3>$1</h3>')
         .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
-        .replace(/^- (.*$)/gim, '<p style="padding-left: 16px; border-left: 2px solid var(--orange); margin: 6px 0;">$1</p>')
+        .replace(/^> \*\*BLUF\*\* (.*$)/gim, '<div class="bluf-box">$1</div>')
         .replace(/\n\n/gim, '<br><br>');
 
-    container.innerHTML = html;
+    // Enhanced Table Conversion
+    if (bodyHtml.includes('|')) {
+        const rows = bodyHtml.split('<br><br>');
+        for (let i = 0; i < rows.length; i++) {
+            if (rows[i].includes('|') && rows[i].includes('--')) {
+                const tableRows = rows[i].trim().split('\n').filter(r => r.includes('|'));
+                let tableHtml = '<div class="memo-table-wrapper"><table><thead>';
+                const headers = tableRows[0].split('|').filter(h => h.trim());
+                tableHtml += '<tr>' + headers.map(h => `<th>${h.trim()}</th>`).join('') + '</tr></thead><tbody>';
+
+                for (let j = 2; j < tableRows.length; j++) {
+                    const cells = tableRows[j].split('|').filter(c => c !== undefined).slice(1, -1);
+                    tableHtml += '<tr>' + cells.map(c => `<td>${c.trim()}</td>`).join('') + '</tr>';
+                }
+                tableHtml += '</tbody></table></div>';
+                bodyHtml = bodyHtml.replace(rows[i], tableHtml);
+            }
+        }
+    }
+
+    // 3. Assemble Premium Document
+    const docId = data.meta?.doc_id || "SAHASRANSHU_CORE";
+    const date = data.meta?.current_date || new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
+    const fullHtml = `
+        <div class="memo-header">
+            <div class="memo-branding">
+                <div class="memo-logo-stamp">SAHASRANSHU RESEARCH INTELLIGENCE</div>
+                <div class="memo-classification">L3 EXECUTIVE</div>
+            </div>
+            <h1>Intelligence Memo</h1>
+            <div style="font-family: var(--font-terminal); font-size: 10px; color: var(--text-muted); margin-top: 10px;">
+                REF: ${docId} / ${date}
+            </div>
+        </div>
+
+        <div class="memo-scorecard">
+            <div class="score-item">
+                <span class="score-label">Policy Tone</span>
+                <span class="score-value">${sentimentLabel}</span>
+                <div class="score-progress-bg">
+                    <div class="score-progress-fill" style="width: ${Math.abs(sentimentScore)}%; background: ${sentimentScore >= 0 ? 'var(--gold)' : 'var(--cyan)'}"></div>
+                </div>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Delta Intensity</span>
+                <span class="score-value">${deltaIntensity}%</span>
+                <div class="score-progress-bg">
+                    <div class="score-progress-fill" style="width: ${deltaIntensity}%"></div>
+                </div>
+            </div>
+            <div class="score-item">
+                <span class="score-label">Analysis Confidence</span>
+                <span class="score-value">${avgConfidence}%</span>
+                <div class="score-progress-bg">
+                    <div class="score-progress-fill" style="width: ${avgConfidence}%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memo-body-content">
+            ${bodyHtml}
+        </div>
+
+        <div class="signature-block">
+            <div class="sig-title">AUTHENTICATED BY</div>
+            <div class="sig-name">Sahasranshu Analytics Engine</div>
+            <div style="font-family: var(--font-terminal); font-size: 8px; color: var(--text-muted); margin-top: 5px;">
+                © 2026 DIGITAL SIGNATURE VERIFIED
+            </div>
+        </div>
+    `;
+
+    container.innerHTML = fullHtml;
 }
 
 document.addEventListener('DOMContentLoaded', loadTerminalData);
