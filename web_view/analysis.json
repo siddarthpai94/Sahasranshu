@@ -1,19 +1,25 @@
 {
   "stances": [
     {
-      "topic": "Federal Funds Rate Adjustment",
+      "topic": "Federal Funds Rate Target",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
+      "evidence": "The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
     },
     {
-      "topic": "Quantitative Tightening (Balance Sheet Reduction)",
+      "topic": "Maintenance of Federal Funds Rate (Dissent)",
+      "category": "opposed",
+      "confidence": 1.0,
+      "evidence": "Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent."
+    },
+    {
+      "topic": "Balance Sheet Reduction (Quantitative Tightening)",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities."
     },
     {
-      "topic": "Inflation Targeting",
+      "topic": "Inflation Objective",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective."
@@ -25,34 +31,34 @@
       "evidence": "In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks."
     },
     {
-      "topic": "Interest Rate on Reserve Balances (IORB)",
+      "topic": "Employment and Inflation Risk Balance",
+      "category": "neutral",
+      "confidence": 0.9,
+      "evidence": "The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance."
+    },
+    {
+      "topic": "Interest Rate on Reserve Balances",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024."
     },
     {
-      "topic": "Primary Credit Rate (Discount Rate)",
+      "topic": "Primary Credit Rate",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024."
+      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent."
     },
     {
-      "topic": "Monetary Policy Stance (Dissenting View)",
-      "category": "opposed",
-      "confidence": 1.0,
-      "evidence": "Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent."
-    },
-    {
-      "topic": "Dual Mandate Risk Assessment",
-      "category": "neutral",
-      "confidence": 0.9,
-      "evidence": "The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. The economic outlook is uncertain, and the Committee is attentive to the risks to both sides of its dual mandate."
-    },
-    {
-      "topic": "Open Market Operations (Repurchase/Reverse Repurchase)",
+      "topic": "Standing Overnight Repurchase Agreement Operations",
       "category": "supportive",
-      "confidence": 0.95,
-      "evidence": "Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent... Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent."
+      "confidence": 1.0,
+      "evidence": "Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent and with an aggregate operation limit of $500 billion."
+    },
+    {
+      "topic": "Standing Overnight Reverse Repurchase Agreement Operations",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent and with a per-counterparty limit of $160 billion per day."
     }
   ],
   "deltas": [],
@@ -61,5 +67,5 @@
     "current_date": "2024-12-18",
     "previous_date": "N/A"
   },
-  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Federal Funds Rate Adjustment | **supportive** | 1.0 | In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Quantitative Tightening (Balance Sheet Reduction) | **supportive** | 1.0 | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Inflation Targeting | **supportive** | 1.0 | The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective. |\n| Future Monetary Policy Adjustments | **cautious** | 0.95 | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Interest Rate on Reserve Balances (IORB) | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Primary Credit Rate (Discount Rate) | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |\n| Monetary Policy Stance (Dissenting View) | **opposed** | 1.0 | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Dual Mandate Risk Assessment | **neutral** | 0.9 | The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. The economic outlook is uncertain, and the Committee is attentive to the risks to both sides of its dual mandate. |\n| Open Market Operations (Repurchase/Reverse Repurchase) | **supportive** | 0.95 | Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent... Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent. |\n\n"
+  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\nThis memo analyzes the stance of the latest policy statement and compares it with the previous release.\n\n## 1. Canonical Stance Extraction\n\n| Topic | Stance | Confidence | Evidence |\n|-------|--------|------------|----------|\n| Federal Funds Rate Target | **supportive** | 1.0 | The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Maintenance of Federal Funds Rate (Dissent) | **opposed** | 1.0 | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Balance Sheet Reduction (Quantitative Tightening) | **supportive** | 1.0 | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Inflation Objective | **supportive** | 1.0 | The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective. |\n| Future Monetary Policy Adjustments | **cautious** | 0.95 | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Employment and Inflation Risk Balance | **neutral** | 0.9 | The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. |\n| Interest Rate on Reserve Balances | **supportive** | 1.0 | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Primary Credit Rate | **supportive** | 1.0 | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent. |\n| Standing Overnight Repurchase Agreement Operations | **supportive** | 1.0 | Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent and with an aggregate operation limit of $500 billion. |\n| Standing Overnight Reverse Repurchase Agreement Operations | **supportive** | 1.0 | Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent and with a per-counterparty limit of $160 billion per day. |\n\n"
 }
