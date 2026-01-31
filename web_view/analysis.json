@@ -61,8 +61,42 @@
       "evidence": "Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities."
     }
   ],
-  "deltas": [],
-  "hypotheses": [],
+  "deltas": [
+    {
+      "topic": "Federal Funds Rate",
+      "change_type": "weakened",
+      "previous_stance": "Maintain target range at 4-1/2 to 4-3/4 percent",
+      "current_stance": "Lower target range by 1/4 percentage point to 4-1/4 to 4-1/2 percent",
+      "explanation": "The Committee has shifted from maintaining rates to actively cutting them, signaling increased confidence in inflation control and concern about economic growth."
+    },
+    {
+      "topic": "Policy Outlook",
+      "change_type": "cautious",
+      "previous_stance": "Continued monitoring of economic conditions",
+      "current_stance": "Carefully assess incoming data for additional adjustments",
+      "explanation": "The language emphasizes caution in future rate decisions, suggesting uncertainty about the path forward despite the current cut."
+    }
+  ],
+  "hypotheses": [
+    {
+      "mechanism": "The Fed is beginning a gradual easing cycle due to inflation progress, but will proceed cautiously given the dissenting vote and uncertain economic outlook.",
+      "falsifiers": [
+        "Core inflation re-accelerates above 3% annually",
+        "Labor market shows unexpected strength with unemployment below 4%",
+        "Next FOMC meeting maintains rates without further cuts"
+      ],
+      "confidence": 0.78
+    },
+    {
+      "mechanism": "The dissenting vote from Beth M. Hammack signals internal disagreement about the pace of easing, suggesting future cuts may be slower than market expects.",
+      "falsifiers": [
+        "Fed cuts rates by 50bps at next meeting",
+        "Majority of FOMC members signal aggressive easing in dot plot",
+        "Fed Chair Powell dismisses dissent in press conference"
+      ],
+      "confidence": 0.65
+    }
+  ],
   "meta": {
     "current_date": "2024-12-18",
     "previous_date": "N/A"
