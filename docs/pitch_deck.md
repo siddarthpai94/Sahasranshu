@@ -39,7 +39,7 @@ Sahasranshu isn't a chatbot. It is a **State Comparison Engine**.
 
 ## 4. The "Secret Sauce" (Technical Edge)
 
-Built natively on **Google Gemini 2.0 Flash**:
+Built natively on **Google Gemini 3 Pro Preview**:
 
 *   **1M+ Token Context Window**: We ingest *entire* historical archives, not just RAG snippets.
 *   **Native Multimodality**: Reads charts in PDF annexes as fluently as text.

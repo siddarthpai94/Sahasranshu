@@ -65,6 +65,6 @@ def render_memo(analysis: Dict[str, Any]) -> str:
     
     memo += "---\n\n"
     memo += "### Digital Authentication\n"
-    memo += "**Status:** VERIFIED | **Classification:** L3_EXECUTIVE_ONLY | **Model:** gemini-3-flash-preview\n"
+    memo += "**Status:** VERIFIED | **Classification:** L3_EXECUTIVE_ONLY | **Model:** gemini-3-pro-preview\n"
 
     return memo

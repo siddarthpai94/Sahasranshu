@@ -10,7 +10,7 @@
 ## Built With
 
 *   **python**: The core backend logic and orchestration.
-*   **google-gemini**: The AI reasoning engine (Gemini 2.0 Flash) for Extraction, Delta Computation, and Hypothesis Generation.
+*   **google-gemini**: The AI reasoning engine (Gemini 3 Pro Preview) for Extraction, Delta Computation, and Hypothesis Generation.
 *   **javascript**: High-performance, vanilla JS frontend for the "Terminal" dashboard.
 *   **pydantic**: Enforced strict JSON schemas for all LLM outputs to ensure type safety.
 *   **pypdf**: Native PDF ingestion preserving page structure.
@@ -21,75 +21,82 @@
 ---
 
 ## Inspiration
-Global financial markets move trillions of dollars based on subtle shifts in central-bank language. When the Federal Reserve or RBI releases a statement, analysts often manually compare it to the prior version to detect changes in tone, emphasis, and policy stance.
+Global financial markets move trillions of dollars based on small changes in central-bank language. When institutions like the Federal Reserve or RBI release a new policy statement, analysts manually compare it with the previous version to detect shifts in tone, emphasis, or stance.
 
-That workflow is **slow, qualitative, and biased**. People anchor on expectations and can miss small but meaningful shifts.
+This process is **slow, subjective, and error-prone**. Human readers anchor on expectations and often miss subtle but important changes that actually move markets.
 
-We asked a simple question: *what if an AI could quantify policy change instantly—so the primary output isn’t a summary of what was said, but a structured measure of what changed?*
+We asked a simple question:
+*What if an AI could instantly measure how policy changed—so the main output isn’t a summary of what was said, but a precise description of what changed?*
 
-That idea became **Sahasranshu**.
+That question led to **Sahasranshu**.
 
 ## What it does
-Sahasranshu is a stateless, manifest-driven analysis engine that turns central-bank PDFs into machine-readable “policy deltas.”
+Sahasranshu is a stateless, manifest-driven analysis engine that converts central-bank policy documents into structured, machine-readable policy deltas.
 
-It:
-1.  **Ingests** complex regulatory PDFs while preserving page structure and tables.
-2.  **Extracts** key policy stances (e.g., inflation, labor market, growth, financial conditions).
-3.  **Compares** the current document against a reference version to compute a structured “change vector” across stances (direction + magnitude + confidence).
-4.  **Generates hypotheses** for what may have caused the change (e.g., “inflation persistence” or “labor market cooling”).
-5.  **Produces falsifiable predictions** for upcoming economic data releases that could confirm or refute the hypothesis.
+It does the following:
+1.  **Ingests** complex regulatory PDFs while preserving layout, tables, and footnotes.
+2.  **Extracts** core policy stances (inflation, labor markets, growth, financial conditions, etc.).
+3.  **Compares** the latest document against a reference version to compute a structured change vector:
+    *   Direction of change
+    *   Magnitude
+    *   Confidence score
+4.  **Generates hypotheses** explaining why the policy stance shifted (e.g., inflation persistence or labor-market cooling).
+5.  **Produces falsifiable predictions** about upcoming economic data that could confirm or disprove the hypothesis.
 
-The output is not prose—it is **structured JSON** designed for quantitative workflows.
+The output is not prose. It is **structured JSON** designed for quantitative analysis, trading systems, and research workflows.
 
 ## How we built it
-We designed Sahasranshu as a functional pipeline to maximize reproducibility and auditability—critical for finance and compliance.
+We designed Sahasranshu as a deterministic, auditable pipeline—essential for finance and compliance use cases.
 
-### AI Core (Gemini 2.0 Flash)
-*   **Large context window**: Enabled full documents (and supporting history) to be analyzed together, instead of relying on lossy chunking.
-*   **Native JSON mode**: Enforced strict **Pydantic** schemas so stance and delta objects can be consumed directly by downstream systems.
+### AI Core
+*   Uses a large-context LLM (Gemini 3 Pro Preview) to analyze full policy documents and historical references together.
+*   Enforces strict JSON outputs via schema validation, making results directly usable downstream.
 
 ### Backend
-*   **Python 3.11** with a custom `GeminiClient` that implements exponential backoff, rate-limit handling, and deterministic audit logs.
+*   **Python 3.11** with a custom client that handles retries, rate limits, and deterministic audit logs.
+*   Stateless, manifest-driven execution to ensure reproducibility.
 
 ### Frontend
-*   A high-performance **Vanilla JavaScript** dashboard inspired by the Bloomberg Terminal.
-*   We avoided heavy frameworks to keep interaction snappy during high-volatility market events.
+*   A lightweight, high-performance **JavaScript dashboard** inspired by professional market terminals.
+*   Built without heavy frameworks to stay responsive during market-moving events.
 
 ### Delta Engine
-*   A dedicated comparison engine that explicitly reasons about changes in intent (not just wording), then outputs normalized deltas with confidence scores.
+*   A dedicated comparison layer that reasons about policy intent, not just wording.
+*   Outputs normalized deltas with confidence scores instead of raw text differences.
 
 ## Challenges we ran into
-### Comparative hallucination
-LLMs are strong at summarizing one document, but comparisons can trigger invented differences.
-*   **Solution**: We implemented a manifest-driven comparison protocol that always feeds document pairs together with explicit instructions to ignore stylistic edits and focus only on **policy intent**.
+### 1. Comparative hallucination
+LLMs are good at summarizing single documents, but comparisons can introduce invented differences.
+*   **Solution**: We implemented a strict, manifest-driven comparison protocol that feeds document pairs together and explicitly instructs the model to ignore stylistic edits and focus only on **policy intent**.
 
-### Latency vs. depth
-Deep reasoning improves quality, but market users need speed.
-*   **Solution**: We parallelized stages (reference loading and stance extraction run concurrently) and optimized prompts for **sub-10-second** end-to-end runs.
+### 2. Latency vs. depth
+Deep reasoning improves accuracy, but market users need results fast.
+*   **Solution**: We parallelized pipeline stages and optimized prompts to achieve **sub-10-second** end-to-end execution.
 
-### PDF complexity (tables, footnotes, formatting)
-Policy caveats often live in the hardest-to-parse parts of documents.
-*   **Solution**: We leaned on Gemini’s native multimodal PDF understanding to preserve structure and interpret tables/footnotes more reliably than OCR-first approaches.
+### 3. PDF complexity
+Critical policy signals often live in tables, footnotes, and formatting quirks.
+*   **Solution**: We relied on native multimodal PDF understanding rather than OCR-first pipelines, preserving structure and meaning more reliably.
 
-## Accomplishments that we're proud of
-*   Built a complete “delta-first” pipeline end to end: PDF ingestion → stance extraction → change computation → hypothesis + prediction → structured output.
-*   Achieved reproducible, auditable runs using a stateless, manifest-driven design.
-*   Enforced strict JSON schemas (Pydantic) for reliability in downstream quantitative systems.
-*   Delivered a fast, terminal-style UI that makes policy changes explorable in seconds.
-*   Reduced noisy “summary-first” behavior by making change detection the primary objective.
+## Accomplishments that we’re proud of
+*   Built a complete **delta-first pipeline** from PDF ingestion to structured predictions.
+*   Achieved reproducible, auditable analysis with a stateless design.
+*   Enforced strict **JSON schemas** suitable for quantitative systems.
+*   Delivered a fast, terminal-style UI that surfaces policy changes in seconds.
+*   Shifted the focus from “summary-first” to change-first analysis.
 
 ## What we learned
-*   **Change is the highest-value signal.** In time-series text, “what changed” matters more than “what it says.”
-*   **Schema is strategy.** For fintech use cases, structured outputs are the difference between insight and unusable text.
-*   **Comparisons require specialized prompting.** Treating delta detection as a first-class task significantly improves accuracy.
-*   **Native multimodal PDF reasoning is a big advantage** for regulatory documents, especially where tables and footnotes matter.
+*   **Change is the highest-value signal** in time-series text.
+*   **Structured output is critical**—schema turns insight into something usable.
+*   **Delta detection requires specialized prompting** and system design.
+*   Native multimodal PDF reasoning is a major advantage for regulatory documents.
 
-## What's next for Sahasranshu
-*   **Expand coverage** beyond one institution: Fed, ECB, BoE, RBI, and major emerging-market central banks.
-*   **Build a “policy delta index”** that tracks stance shifts over time and across countries.
-*   **Add event-driven workflows**: Automatic ingestion when new statements/minutes/speeches drop.
-*   **Integrate more artifacts**: Meeting minutes, speeches, Q&A transcripts, and macro data releases for stronger causal attribution.
-*   **Package as an API** + enterprise dashboard for funds, research desks, and risk teams.
+## What’s next for Sahasranshu: Delta-First NLP for Central Bank Intelligence
+*   **Expand coverage** across global central banks (Fed, ECB, BoE, RBI, and emerging markets).
+*   **Build a cross-country policy delta index** tracking stance shifts over time.
+*   **Enable automatic ingestion** when new statements, minutes, or speeches are released.
+*   **Benchmark delta accuracy** against human analysts and historical market reactions.
+*   **Integrate additional artifacts**: speeches, Q&A transcripts, and macro data releases.
+*   **Package the system as an API** and enterprise dashboard for funds, research desks, and risk teams.
 
 ---
 
