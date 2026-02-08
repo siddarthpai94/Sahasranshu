@@ -57,9 +57,7 @@ Built natively on **Google Gemini 3 Pro Preview**:
 
 ## 6. The Team
 
-*   **[Name]**: [Role/Background - e.g., Ex-Goldman Sachs / CS @ Stanford]
-*   **[Name]**: [Role/Background - e.g., AI Researcher / Ex-Google]
-
+Siddarth Pai, Ex JP Morgan
 ---
 
 ## 7. The Vision
