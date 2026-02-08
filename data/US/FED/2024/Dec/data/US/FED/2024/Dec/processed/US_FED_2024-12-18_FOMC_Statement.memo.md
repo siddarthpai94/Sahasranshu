@@ -7,21 +7,22 @@
 
 ## Executive Summary
 
-> **BLUF (Bottom Line Up Front):** The latest policy statement indicates a sophisticated balance between growth objectives and price stability. Key shifts in linguistic nuance suggest a strategic transition in the Committee's outlook.
+> **BLUF** The latest policy statement indicates a sophisticated balance between growth objectives and price stability. Key shifts in linguistic nuance suggest a strategic transition in the Committee's outlook.
 
 ## 1. Tactical Stance Matrix
 
 | Focus Area | Position | Confidence | Primary Evidence |
 |------------|----------|------------|------------------|
-| Federal Funds Rate Reduction | **SUPPORTIVE** | 100% | In support of its goals, the Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |
-| Balance Sheet Reduction (Quantitative Tightening) | **SUPPORTIVE** | 100% | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |
-| Future Interest Rate Adjustments | **CAUTIOUS** | 95% | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |
-| Targeting 2 Percent Inflation | **SUPPORTIVE** | 100% | The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective. |
-| Maintaining Current Rates (Beth M. Hammack Dissent) | **OPPOSED** | 100% | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |
+| Federal Funds Rate Target Range | **SUPPORTIVE** | 100% | The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |
+| Reduction of Securities Holdings (Quantitative Tightening) | **SUPPORTIVE** | 100% | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |
+| Dual Mandate: Maximum Employment | **SUPPORTIVE** | 100% | The Committee seeks to achieve maximum employment... The Committee is strongly committed to supporting maximum employment. |
+| Dual Mandate: 2 Percent Inflation Objective | **SUPPORTIVE** | 100% | The Committee seeks to achieve... inflation at the rate of 2 percent over the longer run... The Committee is strongly committed to... returning inflation to its 2 percent objective. |
+| Future Adjustments to Monetary Policy | **CAUTIOUS** | 95% | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |
+| Maintain Previous Interest Rate Range (Dissenting Opinion) | **OPPOSED** | 100% | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |
 | Interest Rate on Reserve Balances | **SUPPORTIVE** | 100% | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |
-| Primary Credit Rate (Discount Window) | **SUPPORTIVE** | 100% | In a related action, the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |
-| Treasury Security Redemption Caps | **NEUTRAL** | 90% | Redeem Treasury coupon securities up to this monthly cap and Treasury bills to the extent that coupon principal payments are less than the monthly cap [of $25 billion per month]. |
-| Agency Debt/MBS Reinvestment into Treasuries | **SUPPORTIVE** | 95% | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |
+| Primary Credit Rate (Discount Rate) | **SUPPORTIVE** | 100% | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |
+| Overnight Reverse Repurchase Agreement Operations | **SUPPORTIVE** | 100% | Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent... intended to support effective monetary policy implementation and the smooth functioning of short-term funding markets. |
+| Reinvestment Policy for Agency Debt and MBS | **SUPPORTIVE** | 100% | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |
 
 ## 4. Market Sentiment & Outlook
 
