@@ -1,16 +1,10 @@
 {
   "stances": [
     {
-      "topic": "Federal Funds Rate Adjustment",
+      "topic": "Federal Funds Rate Target Range",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent."
-    },
-    {
-      "topic": "Future Monetary Policy Adjustments",
-      "category": "cautious",
-      "confidence": 0.95,
-      "evidence": "In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks."
     },
     {
       "topic": "Balance Sheet Reduction (Quantitative Tightening)",
@@ -19,52 +13,58 @@
       "evidence": "The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities."
     },
     {
-      "topic": "Dual Mandate Goals (Employment and Inflation)",
+      "topic": "Future Interest Rate Adjustments",
+      "category": "cautious",
+      "confidence": 0.95,
+      "evidence": "In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks."
+    },
+    {
+      "topic": "Dual Mandate Risk Balance",
+      "category": "neutral",
+      "confidence": 0.9,
+      "evidence": "The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. The economic outlook is uncertain, and the Committee is attentive to the risks to both sides of its dual mandate."
+    },
+    {
+      "topic": "2 Percent Inflation Objective",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective."
     },
     {
-      "topic": "Risk Assessment for Economic Outlook",
-      "category": "neutral",
-      "confidence": 0.9,
-      "evidence": "The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance."
-    },
-    {
-      "topic": "Flexibility in Policy Stance",
-      "category": "cautious",
-      "confidence": 0.9,
-      "evidence": "The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee’s goals."
-    },
-    {
-      "topic": "Dissenting View on Interest Rate Policy",
+      "topic": "Dissenting View on Interest Rate Action",
       "category": "opposed",
       "confidence": 1.0,
       "evidence": "Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent."
     },
     {
-      "topic": "Interest Rate on Reserve Balances",
+      "topic": "Interest Rate Paid on Reserve Balances (IORB)",
       "category": "supportive",
       "confidence": 1.0,
       "evidence": "The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024."
     },
     {
-      "topic": "Primary Credit Rate",
+      "topic": "Primary Credit Rate (Discount Rate)",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent."
+      "evidence": "the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024."
     },
     {
-      "topic": "Overnight Reverse Repurchase Agreement Operations",
+      "topic": "Standing Overnight Repurchase Agreement Operations",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent... intended to support effective monetary policy implementation and the smooth functioning of short-term funding markets."
+      "evidence": "Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent and with an aggregate operation limit of $500 billion."
     },
     {
-      "topic": "Treasury and Agency MBS Reinvestment Caps",
+      "topic": "Treasury Security Redemption Caps",
       "category": "supportive",
       "confidence": 1.0,
-      "evidence": "Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities... that exceeds a cap of $25 billion per month... Reinvest... agency debt and agency mortgage-backed securities (MBS)... that exceeds a cap of $35 billion per month into Treasury securities."
+      "evidence": "Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities maturing in each calendar month that exceeds a cap of $25 billion per month."
+    },
+    {
+      "topic": "MBS Reinvestment into Treasury Securities",
+      "category": "supportive",
+      "confidence": 1.0,
+      "evidence": "Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities."
     }
   ],
   "deltas": [],
@@ -73,5 +73,5 @@
     "current_date": "2024-12-18",
     "previous_date": "N/A"
   },
-  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\n> **BLUF** The latest policy statement indicates a sophisticated balance between growth objectives and price stability. Key shifts in linguistic nuance suggest a strategic transition in the Committee's outlook.\n\n## 1. Tactical Stance Matrix\n\n| Focus Area | Position | Confidence | Primary Evidence |\n|------------|----------|------------|------------------|\n| Federal Funds Rate Adjustment | **SUPPORTIVE** | 100% | The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Future Monetary Policy Adjustments | **CAUTIOUS** | 95% | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Balance Sheet Reduction (Quantitative Tightening) | **SUPPORTIVE** | 100% | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Dual Mandate Goals (Employment and Inflation) | **SUPPORTIVE** | 100% | The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective. |\n| Risk Assessment for Economic Outlook | **NEUTRAL** | 90% | The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. |\n| Flexibility in Policy Stance | **CAUTIOUS** | 90% | The Committee would be prepared to adjust the stance of monetary policy as appropriate if risks emerge that could impede the attainment of the Committee’s goals. |\n| Dissenting View on Interest Rate Policy | **OPPOSED** | 100% | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Interest Rate on Reserve Balances | **SUPPORTIVE** | 100% | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Primary Credit Rate | **SUPPORTIVE** | 100% | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent. |\n| Overnight Reverse Repurchase Agreement Operations | **SUPPORTIVE** | 100% | Conduct standing overnight reverse repurchase agreement operations at an offering rate of 4.25 percent... intended to support effective monetary policy implementation and the smooth functioning of short-term funding markets. |\n| Treasury and Agency MBS Reinvestment Caps | **SUPPORTIVE** | 100% | Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities... that exceeds a cap of $25 billion per month... Reinvest... agency debt and agency mortgage-backed securities (MBS)... that exceeds a cap of $35 billion per month into Treasury securities. |\n\n## 4. Market Sentiment & Outlook\n\nBased on the extracted stances, the prevailing internal sentiment remains **Balanced**. Immediate market volatility is expected to remain within historical norms for this policy cycle.\n\n---\n\n### Digital Authentication\n**Status:** VERIFIED | **Classification:** L3_EXECUTIVE_ONLY | **Model:** gemini-3-pro-preview\n"
+  "memo_content": "# Sahasranshu Research Memo\n\n**Date:** [Date]\n**Subject:** Policy Stance & Delta Analysis\n\n---\n\n## Executive Summary\n\n> **BLUF** The latest policy statement indicates a sophisticated balance between growth objectives and price stability. Key shifts in linguistic nuance suggest a strategic transition in the Committee's outlook.\n\n## 1. Tactical Stance Matrix\n\n| Focus Area | Position | Confidence | Primary Evidence |\n|------------|----------|------------|------------------|\n| Federal Funds Rate Target Range | **SUPPORTIVE** | 100% | The Committee decided to lower the target range for the federal funds rate by 1/4 percentage point to 4-1/4 to 4-1/2 percent. |\n| Balance Sheet Reduction (Quantitative Tightening) | **SUPPORTIVE** | 100% | The Committee will continue reducing its holdings of Treasury securities and agency debt and agency mortgage-backed securities. |\n| Future Interest Rate Adjustments | **CAUTIOUS** | 95% | In considering the extent and timing of additional adjustments to the target range for the federal funds rate, the Committee will carefully assess incoming data, the evolving outlook, and the balance of risks. |\n| Dual Mandate Risk Balance | **NEUTRAL** | 90% | The Committee judges that the risks to achieving its employment and inflation goals are roughly in balance. The economic outlook is uncertain, and the Committee is attentive to the risks to both sides of its dual mandate. |\n| 2 Percent Inflation Objective | **SUPPORTIVE** | 100% | The Committee is strongly committed to supporting maximum employment and returning inflation to its 2 percent objective. |\n| Dissenting View on Interest Rate Action | **OPPOSED** | 100% | Voting against the action was Beth M. Hammack, who preferred to maintain the target range for the federal funds rate at 4-1/2 to 4-3/4 percent. |\n| Interest Rate Paid on Reserve Balances (IORB) | **SUPPORTIVE** | 100% | The Board of Governors of the Federal Reserve System voted unanimously to lower the interest rate paid on reserve balances to 4.4 percent, effective December 19, 2024. |\n| Primary Credit Rate (Discount Rate) | **SUPPORTIVE** | 100% | the Board of Governors of the Federal Reserve System voted unanimously to approve a 1/4 percentage point decrease in the primary credit rate to 4.5 percent, effective December 19, 2024. |\n| Standing Overnight Repurchase Agreement Operations | **SUPPORTIVE** | 100% | Conduct standing overnight repurchase agreement operations with a minimum bid rate of 4.5 percent and with an aggregate operation limit of $500 billion. |\n| Treasury Security Redemption Caps | **SUPPORTIVE** | 100% | Roll over at auction the amount of principal payments from the Federal Reserve's holdings of Treasury securities maturing in each calendar month that exceeds a cap of $25 billion per month. |\n| MBS Reinvestment into Treasury Securities | **SUPPORTIVE** | 100% | Reinvest the amount of principal payments from the Federal Reserve's holdings of agency debt and agency mortgage-backed securities (MBS) received in each calendar month that exceeds a cap of $35 billion per month into Treasury securities. |\n\n## 4. Market Sentiment & Outlook\n\nBased on the extracted stances, the prevailing internal sentiment remains **Balanced**. Immediate market volatility is expected to remain within historical norms for this policy cycle.\n\n---\n\n### Digital Authentication\n**Status:** VERIFIED | **Classification:** L3_EXECUTIVE_ONLY | **Model:** gemini-3-pro-preview\n"
 }
